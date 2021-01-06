@@ -1,44 +1,65 @@
 package hu.cehessteg.TetrisClasses;
 
-import com.badlogic.gdx.math.Vector2;
+import static hu.cehessteg.TetrisClasses.Tetris.playField;
+import static hu.cehessteg.TetrisClasses.Tetris.playFieldHeight;
+import static hu.cehessteg.TetrisClasses.Tetris.playFieldWidth;
 
 public class Tetromino {
-    public TetrominoType tetrominoType;
-    private BlockMap blockMap;
+    /**Globális tetromino tömb**/
+    public static String[] tetrominoes;
 
-    public Tetromino(TetrominoType tetrominoType) {
-        this.tetrominoType = tetrominoType;
-        this.blockMap = new BlockMap();
-        switch (tetrominoType) {
-            case STRAIGHT:
-                blockMap.size = new Vector2(4,1);
-                break;
-            case SQUARE:
-                blockMap.size = new Vector2(2,2);
-                break;
-            case T:
-                blockMap.size = new Vector2(3,2);
-                break;
-            case L:
-                blockMap.size = new Vector2(2,3);
-                break;
-            case SKEW:
-                blockMap.size = new Vector2(4,2);
-                break;
+    /**Tetrominok 4x4-ben ábrázolva, tömb inicializálása**/
+    public static void buildTetrominoes(){
+        tetrominoes = new String[]{};
+        tetrominoes[0] = ("..A...A...A...A.");
+        tetrominoes[1] = ("..B..BB...B.....");
+        tetrominoes[2] = (".....CC..CC.....");
+        tetrominoes[3] = ("..D..DD..D......");
+        tetrominoes[4] = (".E...EE...E.....");
+        tetrominoes[5] = (".F...F...FF.....");
+        tetrominoes[6] = ("..G...G..GG.....");
+
+    }
+
+    /**Visszaadja az elforgatott blokk új indexét**/
+    public static int rotateBlock(int x, int y, int r){
+        /**
+         * 0: 0°
+         * 1: 90°
+         * 2: 180°
+         * 3: 270°
+         **/
+
+        switch (r%4){
+            case 0: default: return y*4+x;
+            case 1: return 12+y-(x*4);
+            case 2: return 15-(y*4)-x;
+            case 3: return 3-y+(x*4);
         }
     }
 
-    //na majd ez lesz vicces geci
-    //90 fokos forgatás
-    //blockmap méretek cserélése
-    //koordináták átszervezése
-    public void rotate(){
+    /**Visszaadja, hogy befér e a megadott tetromino**/
+    public static boolean doesPieceFitIn(int tetrominoID, int rotation, int newX, int newY)
+    {
+        /**A tetromino blokkjainak végigvizsgálása**/
+        for (int px = 0; px < 4; px++)
+            for (int py = 0; py < 4; py++)
+            {
+                /**A blokk indexe a tetrominoban**/
+                int pi = rotateBlock(px, py, rotation);
 
-    }
+                /**A blokk indexe a játékmezőben**/
+                int fi = (newY + py) * playFieldWidth + (newX + px);
 
-    //legalsó blokkokat kell majd vizsgálni, hogy van e alattuk blokk
-    //ha nincsenek, akkor lépjenek lefele, ha vannak, álljanak meg és épüljenek be a blockmapbe
-    public void stepDown(){
-
+                /**Ütközésvizsgálat
+                 * Ha a blokk alatt van egy másik blokk vagy ha a szélén van, nem fér be
+                 * **/
+                if (newX + px >= 0 && newX + px < playFieldWidth)
+                    if (newY + py >= 0 && newY + py < playFieldHeight)
+                        if (tetrominoes[tetrominoID].charAt(pi) != '.' && playField[fi] != "0")
+                            return false;
+            }
+        /**Ha nem találtunk ütközést, akkor igazzal térünk vissza**/
+        return true;
     }
 }
