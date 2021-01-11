@@ -1,65 +1,128 @@
 package hu.cehessteg.TetrisClasses;
 
-import static hu.cehessteg.TetrisClasses.Tetris.playField;
-import static hu.cehessteg.TetrisClasses.Tetris.playFieldHeight;
-import static hu.cehessteg.TetrisClasses.Tetris.playFieldWidth;
+import java.util.Random;
 
 public class Tetromino {
-    /**Globális tetromino tömb**/
-    public static String[] tetrominoes;
+    private ShapeType pieceShape;//Az alakzat
+    private int coords[][];//Az alakzat koordinátái
+    private int[][][] coordsTable;//3 dimenziós koordináta táblázat
 
-    /**Tetrominok 4x4-ben ábrázolva, tömb inicializálása**/
-    public static void buildTetrominoes(){
-        tetrominoes = new String[]{};
-        tetrominoes[0] = ("..A...A...A...A.");
-        tetrominoes[1] = ("..B..BB...B.....");
-        tetrominoes[2] = (".....CC..CC.....");
-        tetrominoes[3] = ("..D..DD..D......");
-        tetrominoes[4] = (".E...EE...E.....");
-        tetrominoes[5] = (".F...F...FF.....");
-        tetrominoes[6] = ("..G...G..GG.....");
-
+    /**Konstruktor inicializálással**/
+    public Tetromino() {
+        initShape();
     }
 
-    /**Visszaadja az elforgatott blokk új indexét**/
-    public static int rotateBlock(int x, int y, int r){
-        /**
-         * 0: 0°
-         * 1: 90°
-         * 2: 180°
-         * 3: 270°
-         **/
+    /**Alakzat inicializálása és üresre állítása alapértelmezetten**/
+    private void initShape() {
+        coords = new int[4][2];
+        coordsTable = new int[][][] {
+                { { 0, 0 },   { 0, 0 },   { 0, 0 },   { 0, 0 } },
+                { { 0, -1 },  { 0, 0 },   { -1, 0 },  { -1, 1 } },
+                { { 0, -1 },  { 0, 0 },   { 1, 0 },   { 1, 1 } },
+                { { 0, -1 },  { 0, 0 },   { 0, 1 },   { 0, 2 } },
+                { { -1, 0 },  { 0, 0 },   { 1, 0 },   { 0, 1 } },
+                { { 0, 0 },   { 1, 0 },   { 0, 1 },   { 1, 1 } },
+                { { -1, -1 }, { 0, -1 },  { 0, 0 },   { 0, 1 } },
+                { { 1, -1 },  { 0, -1 },  { 0, 0 },   { 0, 1 } }
+        };
+        setShape(ShapeType.NoShape);
+    }
 
-        switch (r%4){
-            case 0: default: return y*4+x;
-            case 1: return 12+y-(x*4);
-            case 2: return 15-(y*4)-x;
-            case 3: return 3-y+(x*4);
+    /**Alakzat beállítása**/
+    protected void setShape(ShapeType shape) {
+        for (int i = 0; i < 4 ; i++)
+            for (int j = 0; j < 2; ++j)
+                coords[i][j] = coordsTable[shape.ordinal()][i][j];
+        pieceShape = shape;
+    }
+
+    /**X koordináta módosítása**/
+    private void setX(int index, int x) {
+        coords[index][0] = x;
+    }
+
+    /**Y koordináta módosítása**/
+    private void setY(int index, int y) {
+        coords[index][1] = y;
+    }
+
+    /**X koordinátát adja vissza**/
+    public int x(int index) {
+        return coords[index][0];
+    }
+
+    /**Y koordinátát adja vissza**/
+    public int y(int index) {
+        return coords[index][1];
+    }
+
+    /**A**/
+    public ShapeType getShape()  {
+        return pieceShape;
+    }
+
+    /**Új random alakzat beállítása**/
+    public void setRandomShape() {
+        Random r = new Random();
+        int x = Math.abs(r.nextInt()) % 7 + 1;
+
+        ShapeType[] values = ShapeType.values();
+        setShape(values[x]);
+    }
+
+    /**Legkisebb X koordinátát adja vissza**/
+    public int minX() {
+        int m = coords[0][0];
+
+        for (int i=0; i < 4; i++)
+            m = Math.min(m, coords[i][0]);
+
+        return m;
+    }
+
+
+    /**Legkisebb Y koordinátát adja vissza**/
+    public int minY() {
+        int m = coords[0][1];
+
+        for (int i=0; i < 4; i++)
+            m = Math.min(m, coords[i][1]);
+
+        return m;
+    }
+
+    /**Alakzat forgatása balra**/
+    public Tetromino rotateLeft() {
+
+        if (pieceShape == ShapeType.SquareShape)
+            return this;//Ha kocka, akkor saját magát visszaadjuk
+
+        Tetromino result = new Tetromino();
+        result.pieceShape = pieceShape;
+
+        for (int i = 0; i < 4; ++i) {
+            result.setX(i, y(i));
+            result.setY(i, -x(i));
         }
+
+        return result;
     }
 
-    /**Visszaadja, hogy befér e a megadott tetromino**/
-    public static boolean doesPieceFitIn(int tetrominoID, int rotation, int newX, int newY)
-    {
-        /**A tetromino blokkjainak végigvizsgálása**/
-        for (int px = 0; px < 4; px++)
-            for (int py = 0; py < 4; py++)
-            {
-                /**A blokk indexe a tetrominoban**/
-                int pi = rotateBlock(px, py, rotation);
+    /**Alakzat forgatása jobbra**/
+    public Tetromino rotateRight() {
 
-                /**A blokk indexe a játékmezőben**/
-                int fi = (newY + py) * playFieldWidth + (newX + px);
+        if (pieceShape == ShapeType.SquareShape)
+            return this;//Ha kocka, akkor saját magát visszaadjuk
 
-                /**Ütközésvizsgálat
-                 * Ha a blokk alatt van egy másik blokk vagy ha a szélén van, nem fér be
-                 * **/
-                if (newX + px >= 0 && newX + px < playFieldWidth)
-                    if (newY + py >= 0 && newY + py < playFieldHeight)
-                        if (tetrominoes[tetrominoID].charAt(pi) != '.' && playField[fi] != "0")
-                            return false;
-            }
-        /**Ha nem találtunk ütközést, akkor igazzal térünk vissza**/
-        return true;
+        Tetromino result = new Tetromino();
+        result.pieceShape = pieceShape;
+
+        for (int i = 0; i < 4; ++i) {
+            result.setX(i, -y(i));
+            result.setY(i, x(i));
+        }
+
+        return result;
     }
 }
+
