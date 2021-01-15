@@ -8,7 +8,7 @@ public interface IActorZindex extends IZindex{
 
     @Override
     public default boolean setZIndex(int index) {
-        //System.out.println("asd");
+        //System.out.println("ShapeType");
         Actor actor = (Actor)this;
         //this.zIndex = index;
         Group parent = actor.getParent();

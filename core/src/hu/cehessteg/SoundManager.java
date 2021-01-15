@@ -1,4 +1,4 @@
-package hu.cehessteg.ballgame;
+package hu.cehessteg;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
@@ -12,7 +12,7 @@ import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
  * **/
 public class SoundManager {
     /**Game egy példánya, hogy később könnyen hozzáférhessek**/
-    public static BallGame game;
+    public static TetrisGame game;
 
     /**
      * Hangok elérési útjai

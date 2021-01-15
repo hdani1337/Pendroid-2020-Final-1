@@ -10,14 +10,12 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class BlockActor extends OneSpriteStaticActor {
     public Board board;
-    public int id;
     public Vector2 position;
     public int size = 64;
 
     public BlockActor(MyGame game, Board board, Vector2 position) {
         super(game, "badlogic.jpg");
         this.board = board;
-        this.id = id;
         this.position = position;
         setSize(size,size);
         setPosition(position.x*size,position.y*size);

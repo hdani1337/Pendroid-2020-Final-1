@@ -1,20 +1,21 @@
-package hu.cehessteg.ballgame.Stage;
+package hu.cehessteg.Stage;
 
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-import hu.cehessteg.ballgame.Hud.TextBox;
-import hu.cehessteg.ballgame.Screen.GameScreen;
+import hu.cehessteg.Hud.TextBox;
+import hu.cehessteg.Screen.GameScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.PrettyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 
-import static hu.cehessteg.ballgame.BallGame.muted;
-import static hu.cehessteg.ballgame.BallGame.preferences;
-import static hu.cehessteg.ballgame.SoundManager.gameMusic;
+import static hu.cehessteg.SoundManager.gameMusic;
+import static hu.cehessteg.TetrisGame.muted;
+import static hu.cehessteg.TetrisGame.preferences;
+
 
 public class PauseStage extends PrettyStage {
     //region AssetList
@@ -76,7 +77,7 @@ public class PauseStage extends PrettyStage {
                 super.clicked(event, x, y);
                 if(getScreen() != null) {
                     if (getScreen() instanceof GameScreen){}
-                        BallStage.isAct = true;
+                        //BallStage.isAct = true;
                 }
             }
         });
@@ -145,8 +146,8 @@ public class PauseStage extends PrettyStage {
         super.act(delta);
         if(getScreen() != null) {
             if (getScreen() instanceof GameScreen) {
-                if (!BallStage.isAct && !BallStage.isGameOver) pause(null);
-                else if (BallStage.isAct && addedActors) resume(null);
+                /*if (!BallStage.isAct && !BallStage.isGameOver) pause(null);
+                else if (BallStage.isAct && addedActors) resume(null);*/
             }
         }
     }
@@ -154,10 +155,10 @@ public class PauseStage extends PrettyStage {
     @Deprecated
     private void pause(Music music){
         if(getScreen() != null && (getScreen() instanceof GameScreen)){
-            if(!pontok.text.equals("Jelenlegi pontszámod\n"+BallStage.score)) {
+           /* if(!pontok.text.equals("Jelenlegi pontszámod\n"+BallStage.score)) {
                 pontok.setText("Jelenlegi pontszámod\n"+BallStage.score);
                 pontok.setX(getViewport().getWorldWidth()/2-pontok.getWidth()/2);
-            }
+            }*/
         }
         //Adjuk hozzá a gombokat a stagehez ha még nincsenek rajta
         if(!addedActors) {

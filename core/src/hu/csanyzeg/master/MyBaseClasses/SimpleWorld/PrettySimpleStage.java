@@ -1,8 +1,10 @@
-package hu.csanyzeg.master.MyBaseClasses.Scene2D;
+package hu.csanyzeg.master.MyBaseClasses.SimpleWorld;
 
 import com.badlogic.gdx.utils.viewport.Viewport;
 
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.IPrettyStage;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorldStage;
 
 /**

@@ -1,14 +1,13 @@
-package hu.cehessteg.ballgame.Stage;
+package hu.cehessteg.Stage;
 
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
-
-import hu.cehessteg.ballgame.Hud.Logo;
-import hu.cehessteg.ballgame.Hud.OptionSwitch;
-import hu.cehessteg.ballgame.Hud.OptionSwitchType;
-import hu.cehessteg.ballgame.Hud.TextBox;
-import hu.cehessteg.ballgame.SoundManager;
+import hu.cehessteg.Hud.Logo;
+import hu.cehessteg.Hud.OptionSwitch;
+import hu.cehessteg.Hud.OptionSwitchType;
+import hu.cehessteg.Hud.TextBox;
+import hu.cehessteg.SoundManager;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -17,9 +16,9 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 
-import static hu.cehessteg.ballgame.BallGame.muted;
-import static hu.cehessteg.ballgame.BallGame.preferences;
-import static hu.cehessteg.ballgame.Stage.InfoStage.BACKBUTTON_TEXTURE;
+import static hu.cehessteg.Stage.InfoStage.BACKBUTTON_TEXTURE;
+import static hu.cehessteg.TetrisGame.muted;
+import static hu.cehessteg.TetrisGame.preferences;
 
 public class OptionsStage extends PrettyStage {
     public static AssetList assetList = new AssetList();

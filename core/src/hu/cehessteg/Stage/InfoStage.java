@@ -1,4 +1,4 @@
-package hu.cehessteg.ballgame.Stage;
+package hu.cehessteg.Stage;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -6,7 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
-import hu.cehessteg.ballgame.Hud.Logo;
+import hu.cehessteg.Hud.Logo;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -16,9 +16,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
-import static hu.cehessteg.ballgame.Hud.TextBox.TEXTBOX_TEXTURE;
-import static hu.cehessteg.ballgame.Hud.TextBox.VERDANA_FONT;
-import static hu.cehessteg.ballgame.Stage.WeatherBackground.PLAYFIELD_TEXTURE;
+import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
+import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
 
 public class InfoStage extends PrettyStage {
     public static String BACKBUTTON_TEXTURE = "pic/gombok/play.png";
@@ -72,7 +71,7 @@ public class InfoStage extends PrettyStage {
             }
         };
 
-        playfieldActor = new OneSpriteStaticActor(game,PLAYFIELD_TEXTURE);
+        //playfieldActor = new OneSpriteStaticActor(game,PLAYFIELD_TEXTURE);
         playfieldActor.setSize(getViewport().getWorldWidth(),(getViewport().getWorldWidth()/playfieldActor.getWidth())*playfieldActor.getHeight());
     }
 

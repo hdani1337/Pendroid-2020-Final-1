@@ -1,4 +1,4 @@
-package hu.cehessteg.ballgame.Stage;
+package hu.cehessteg.Stage;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -6,27 +6,22 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import java.util.ArrayList;
 
-import hu.cehessteg.ballgame.Hud.Logo;
-import hu.cehessteg.ballgame.Hud.TextBox;
-import hu.cehessteg.ballgame.Screen.GameScreen;
-import hu.cehessteg.ballgame.Screen.InfoScreen;
-import hu.cehessteg.ballgame.Screen.OptionsScreen;
+import hu.cehessteg.Hud.Logo;
+import hu.cehessteg.Hud.TextBox;
+import hu.cehessteg.Screen.GameScreen;
+import hu.cehessteg.Screen.InfoScreen;
+import hu.cehessteg.Screen.OptionsScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
-import hu.csanyzeg.master.MyBaseClasses.Scene2D.PrettySimpleStage;
-import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.Direction;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.PositionRule;
+import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.PrettySimpleStage;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.ShapeType;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleBodyType;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorldHelper;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
-
-import static hu.cehessteg.ballgame.BallGame.muted;
-import static hu.cehessteg.ballgame.SoundManager.kezdesHang;
-import static hu.cehessteg.ballgame.SoundManager.kilepesHang;
 
 
 //TODO TEXTÚRÁK BEHELYETTESÍTÉSE HA KÉSZ LESZNEK
@@ -111,7 +106,7 @@ public class MenuStage extends PrettySimpleStage {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 animation(start);
-                if(!muted && kezdesHang != null) kezdesHang.play(1);
+                //if(!muted && kezdesHang != null) kezdesHang.play(1);
                 addTimer(new TickTimer(0.5f, false, new TickTimerListener(){
                     @Override
                     public void onTick(Timer sender, float correction) {
@@ -158,9 +153,9 @@ public class MenuStage extends PrettySimpleStage {
                     ((SimpleWorldHelper) a.getActorWorldHelper()).getBody().colorToFixTime(0.5f, 1, 1, 1, 0);
                 }
 
-                if(!muted && kilepesHang != null){
+                /*if(!muted && kilepesHang != null){
                     kilepesHang.play(1);
-                }
+                }*/
                 addTimer(new TickTimer(0.5f,false,new TickTimerListener(){
                     @Override
                     public void onStop(Timer sender) {

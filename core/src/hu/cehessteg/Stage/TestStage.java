@@ -74,7 +74,7 @@ public class TestStage extends PrettyStage {
         for (BlockActor b : blockActors)
             addActor(b);
 
-        addTimer(new TickTimer(0.5f,true,new TickTimerListener(){
+        addTimer(new TickTimer(0.25f,true,new TickTimerListener(){
             @Override
             public void onRepeat(TickTimer sender) {
                 super.onRepeat(sender);

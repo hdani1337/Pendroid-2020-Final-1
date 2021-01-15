@@ -1,10 +1,10 @@
-package hu.cehessteg.ballgame.Stage;
+package hu.cehessteg.Stage;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
 
-import hu.cehessteg.ballgame.Screen.MenuScreen;
+import hu.cehessteg.Screen.MenuScreen;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -12,7 +12,8 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.PrettyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
-import static hu.cehessteg.ballgame.Hud.TextBox.RETRO_FONT;
+import static hu.cehessteg.Hud.TextBox.RETRO_FONT;
+
 
 public class IntroStage extends PrettyStage {
     public static final String GDX_TEXTURE = "pic/logos/gdx.png";

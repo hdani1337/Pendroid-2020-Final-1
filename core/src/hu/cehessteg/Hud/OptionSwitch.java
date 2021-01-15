@@ -1,4 +1,4 @@
-package hu.cehessteg.ballgame.Hud;
+package hu.cehessteg.Hud;
 
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -8,18 +8,17 @@ import com.badlogic.gdx.utils.Align;
 
 import java.util.ArrayList;
 
-import hu.cehessteg.ballgame.Stage.OptionsStage;
+import hu.cehessteg.Stage.OptionsStage;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.IPrettyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyGroup;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
-import static hu.cehessteg.ballgame.BallGame.muted;
-import static hu.cehessteg.ballgame.BallGame.preferences;
-import static hu.cehessteg.ballgame.Hud.TextBox.RETRO_FONT;
-import static hu.cehessteg.ballgame.Hud.TextBox.TEXTBOX_TEXTURE;
-import static hu.cehessteg.ballgame.Hud.TextBox.VERDANA_FONT;
+import static hu.cehessteg.Hud.TextBox.RETRO_FONT;
+import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
+import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
+import static hu.cehessteg.TetrisGame.muted;
 
 public class OptionSwitch extends MyGroup implements IPrettyStage {
     public static String BUTTON_TEXTURE = "pic/gombok/play.png";
