@@ -106,7 +106,6 @@ public class Board {
         curPiece = newPiece;
         curX = newX;
         curY = newY;
-        System.out.println(curX);
         return true;
     }
 

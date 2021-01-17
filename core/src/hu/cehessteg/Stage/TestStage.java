@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.InputListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 
 import java.util.ArrayList;
 
@@ -75,17 +76,27 @@ public class TestStage extends PrettySimpleStage {
             });
         }
 
-        bgActor.addListener(new ClickListener(){
+
+        Vector2 dragStart = new Vector2(0,0);
+
+        bgActor.addListener(new DragListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {
-                super.clicked(event, x, y);
-                if(controllable){
-                    if(x < board.BOARD_WIDTH/2)
-                        board.control("a");
-                    else
-                        board.control("d");
-                    moved();
+            public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
+                super.touchUp(event, x, y, pointer, button);
+                if(x-dragStart.x > 2){
+                    board.control("d");
+                }else if(x-dragStart.x < -2){
+                    board.control("a");
+                }else if(y-dragStart.y < -2.5){
+                    board.control(" ");
                 }
+            }
+
+            @Override
+            public boolean touchDown(InputEvent event, float x, float y, int pointer, int button) {
+                dragStart.x = x;
+                dragStart.y = y;
+                return super.touchDown(event, x, y, pointer, button);
             }
         });
 
