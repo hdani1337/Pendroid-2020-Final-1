@@ -7,18 +7,22 @@ import hu.cehessteg.TetrisClasses.Board;
 import hu.cehessteg.TetrisClasses.ShapeType;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
+import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleBodyType;
+import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorld;
+import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorldHelper;
 
 public class BlockActor extends OneSpriteStaticActor {
     public Board board;
     public Vector2 position;
-    public int size = 64;
+    public float size = 1;
 
-    public BlockActor(MyGame game, Board board, Vector2 position) {
+    public BlockActor(MyGame game, Board board, Vector2 position, SimpleWorld world) {
         super(game, "badlogic.jpg");
         this.board = board;
         this.position = position;
         setSize(size,size);
         setPosition(position.x*size,position.y*size);
+        setActorWorldHelper(new SimpleWorldHelper(world, this, hu.csanyzeg.master.MyBaseClasses.SimpleWorld.ShapeType.Rectangle, SimpleBodyType.Sensor));
         update();
     }
 
@@ -29,28 +33,28 @@ public class BlockActor extends OneSpriteStaticActor {
     public void update(ShapeType tetromino){
         switch (tetromino){
             case NoShape: default:
-                setColor(Color.CLEAR);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.CLEAR);
                 break;
             case ZShape:
-                setColor(Color.TEAL);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.TEAL);
                 break;
             case SShape:
-                setColor(Color.ORANGE);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.ORANGE);
                 break;
             case LineShape:
-                setColor(Color.PURPLE);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.PURPLE);
                 break;
             case TShape:
-                setColor(Color.BLUE);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.BLUE);
                 break;
             case SquareShape:
-                setColor(Color.PINK);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.PINK);
                 break;
             case LShape:
-                setColor(Color.YELLOW);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.YELLOW);
                 break;
             case MirroredLShape:
-                setColor(Color.CYAN);
+                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.CYAN);
                 break;
 
         }

@@ -6,8 +6,8 @@ import java.awt.event.KeyEvent;
 public class Board {
 
     /**Tábla méretei**/
-    public final int BOARD_WIDTH = 10;//Szélesség
-    public final int BOARD_HEIGHT = 22;//Magasság
+    public int BOARD_WIDTH = 10;//Szélesség
+    public int BOARD_HEIGHT = 22;//Magasság
 
     /**További globális változók**/
     public boolean isFallingFinished = false;//Befejeződött e a tetromino mozgása
@@ -20,7 +20,7 @@ public class Board {
 
     /**Üres konstruktor a példányosítás miatt**/
     public Board() {
-        start();
+
     }
 
     /**Visszaadja az adott koordinátán levő kocka tetrominojának alakját**/
