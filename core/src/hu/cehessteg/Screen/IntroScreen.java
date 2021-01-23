@@ -1,7 +1,7 @@
 package hu.cehessteg.Screen;
 
 
-import hu.cehessteg.Stage.TestStage;
+import hu.cehessteg.Stage.GameStage;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
@@ -18,7 +18,7 @@ public class IntroScreen extends MyScreen {
 
     @Override
     protected void afterAssetsLoaded() {
-        addStage(new TestStage(game),1,true);
+        addStage(new GameStage(game),1,true);
     }
 
     @Override

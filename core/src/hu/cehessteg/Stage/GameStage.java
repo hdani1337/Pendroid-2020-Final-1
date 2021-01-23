@@ -21,14 +21,16 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 
-public class TestStage extends PrettySimpleStage {
-    ArrayList<BlockActor> blockActors;
-    ArrayList<BlockActor> currentTetromino;
-    OneSpriteStaticActor bgActor;
-    Board board;
-    boolean controllable;
+public class GameStage extends PrettySimpleStage {
+    private ArrayList<BlockActor> blockActors;
+    private ArrayList<BlockActor> currentTetromino;
+    private OneSpriteStaticActor controlActor;
+    private Board board;
+    private boolean controllable;
 
-    public TestStage(MyGame game) {
+    public static int point;
+
+    public GameStage(MyGame game) {
         super(new ResponseViewport(10),game);
     }
 
@@ -47,13 +49,13 @@ public class TestStage extends PrettySimpleStage {
         for (int i = 0; i < 4; i++)
             currentTetromino.add(new BlockActor(game, board, new Vector2(board.curX + board.curPiece.x(i),board.curY - board.curPiece.y(i)),world));
 
-        bgActor = new OneSpriteStaticActor(game,"badlogic.jpg");
-        bgActor.setColor(0,0,0,0);
+        controlActor = new OneSpriteStaticActor(game,"badlogic.jpg");
+        controlActor.setColor(0,0,0,0);
     }
 
     @Override
     public void setSizes() {
-        bgActor.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
+        controlActor.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     @Override
@@ -63,23 +65,9 @@ public class TestStage extends PrettySimpleStage {
 
     @Override
     public void addListeners() {
-        for (BlockActor b : currentTetromino){
-           b.addListener(new ClickListener(){
-                @Override
-                public void clicked(InputEvent event, float x, float y) {
-                    super.clicked(event, x, y);
-                    if(controllable){
-                        board.control("s");
-                        moved();
-                    }
-                }
-            });
-        }
-
-
         Vector2 dragStart = new Vector2(0,0);
 
-        bgActor.addListener(new DragListener(){
+        controlActor.addListener(new DragListener(){
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
@@ -89,6 +77,11 @@ public class TestStage extends PrettySimpleStage {
                     board.control("a");
                 }else if(y-dragStart.y < -2.5){
                     board.control(" ");
+                }else if(y-dragStart.y < 2.5){
+                    if(controllable) {
+                        board.control("s");
+                        moved();
+                    }
                 }
             }
 
@@ -111,10 +104,12 @@ public class TestStage extends PrettySimpleStage {
     public void addActors() {
         for (BlockActor b : blockActors)
             addActor(b);
-        addActor(bgActor);
         for (BlockActor b : currentTetromino)
             addActor(b);
+        addActor(controlActor);
     }
+
+
 
     @Override
     public void afterInit() {
@@ -127,9 +122,12 @@ public class TestStage extends PrettySimpleStage {
             @Override
             public void onRepeat(TickTimer sender) {
                 super.onRepeat(sender);
-                board.update();
-                for (BlockActor b : blockActors) b.update();
-                updateCurrentTetromino();
+                if(!board.isGameOver) {
+                    board.update();
+                    for (BlockActor b : blockActors) b.update();
+                    updateCurrentTetromino();
+                    point = board.numLinesRemoved;
+                }
             }
         }));
     }

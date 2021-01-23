@@ -31,32 +31,27 @@ public class BlockActor extends OneSpriteStaticActor {
     }
 
     public void update(ShapeType tetromino){
+        ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(getTetrominoColor(tetromino));
+    }
+
+    public Color getTetrominoColor(ShapeType tetromino){
         switch (tetromino){
             case NoShape: default:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.CLEAR);
-                break;
+                return Color.CLEAR;
             case ZShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.TEAL);
-                break;
+                return Color.TEAL;
             case SShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.ORANGE);
-                break;
+                return Color.ORANGE;
             case LineShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.PURPLE);
-                break;
+                return Color.PURPLE;
             case TShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.BLUE);
-                break;
+                return Color.BLUE;
             case SquareShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.PINK);
-                break;
+                return Color.PINK;
             case LShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.YELLOW);
-                break;
+                return Color.YELLOW;
             case MirroredLShape:
-                ((SimpleWorldHelper)getActorWorldHelper()).getActor().setColor(Color.CYAN);
-                break;
-
+                return Color.CYAN;
         }
     }
 }
