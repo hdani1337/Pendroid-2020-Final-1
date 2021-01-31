@@ -109,8 +109,7 @@ public class OptionsStage extends PrettyStage {
 
     @Override
     public void setPositions() {
-        backButton.setRotation(180);
-        backButton.setPosition(getViewport().getWorldWidth() - backButton.getWidth()-16,16);
+        backButton.setPosition(16,16);
         optionsLogo.setPosition(getViewport().getWorldWidth()/2 - optionsLogo.getWidth()/2, getViewport().getWorldHeight() - optionsLogo.getHeight()*1.15f);
         difficultySlider.setPosition(getViewport().getWorldWidth()/2-difficultySlider.getWidth()/2,getViewport().getWorldHeight()*0.425f);
         difficultyText.setPosition(difficultySlider.getX() + difficultySlider.getWidth()/2-difficultyText.getWidth()/2,difficultySlider.getY()-20);

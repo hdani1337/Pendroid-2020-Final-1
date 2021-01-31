@@ -21,7 +21,8 @@ import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
 import static hu.cehessteg.TetrisGame.muted;
 
 public class OptionSwitch extends MyGroup implements IPrettyStage {
-    public static String BUTTON_TEXTURE = "pic/gombok/play.png";
+    public static String RIGHT_TEXTURE = "back.png";
+    public static String LEFT_TEXTURE = "back2.png";
 
     private OneSpriteStaticActor decrement;
     private OneSpriteStaticActor background;
@@ -62,8 +63,8 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
 
         if(indexCounter == 0) indexCounter = indexMin;
 
-        decrement = new OneSpriteStaticActor(game,BUTTON_TEXTURE);
-        increment = new OneSpriteStaticActor(game,BUTTON_TEXTURE);
+        decrement = new OneSpriteStaticActor(game,LEFT_TEXTURE);
+        increment = new OneSpriteStaticActor(game,RIGHT_TEXTURE);
         background = new OneSpriteStaticActor(game,TEXTBOX_TEXTURE);
 
         text = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont(RETRO_FONT), Color.WHITE)) {
@@ -74,8 +75,6 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
         };
 
         indexCounterChanged();
-
-        decrement.setRotation(180);
     }
 
     @Override

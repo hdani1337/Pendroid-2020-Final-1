@@ -20,7 +20,7 @@ import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
 import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
 
 public class InfoStage extends PrettyStage {
-    public static String BACKBUTTON_TEXTURE = "pic/gombok/play.png";
+    public static String BACKBUTTON_TEXTURE = "back2.png";
 
     public static AssetList assetList = new AssetList();
     static {
@@ -47,7 +47,6 @@ public class InfoStage extends PrettyStage {
         //if(!muted)
         //    SoundManager.menuMusic.play();
         back = new OneSpriteStaticActor(game, BACKBUTTON_TEXTURE);
-        back.setRotation(180);
         textBg = new OneSpriteStaticActor(game,TEXTBOX_TEXTURE);
         infoLogo = new Logo(game, Logo.LogoType.INFO);
 
