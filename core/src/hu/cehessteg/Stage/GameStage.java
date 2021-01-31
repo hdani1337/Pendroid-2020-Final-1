@@ -71,16 +71,18 @@ public class GameStage extends PrettySimpleStage {
             @Override
             public void touchUp(InputEvent event, float x, float y, int pointer, int button) {
                 super.touchUp(event, x, y, pointer, button);
-                if(x-dragStart.x > 2){
-                    board.control("d");
-                }else if(x-dragStart.x < -2){
-                    board.control("a");
-                }else if(y-dragStart.y < -2.5){
-                    board.control(" ");
-                }else if(y-dragStart.y < 2.5){
-                    if(controllable) {
-                        board.control("s");
-                        moved();
+                if(!board.isPaused && !board.isGameOver) {
+                    if (x - dragStart.x > 2) {
+                        board.control("d");
+                    } else if (x - dragStart.x < -2) {
+                        board.control("a");
+                    } else if (y - dragStart.y < -2.5) {
+                        board.control(" ");
+                    } else if (y - dragStart.y < 2.5) {
+                        if (controllable) {
+                            board.control("s");
+                            moved();
+                        }
                     }
                 }
             }
@@ -118,7 +120,7 @@ public class GameStage extends PrettySimpleStage {
     }
 
     private void addTimers(){
-        addTimer(new TickTimer(0.25f,true,new TickTimerListener(){
+        addTimer(new TickTimer((5-OptionsStage.difficulty)/8.0f,true,new TickTimerListener(){
             @Override
             public void onRepeat(TickTimer sender) {
                 super.onRepeat(sender);
@@ -127,6 +129,7 @@ public class GameStage extends PrettySimpleStage {
                     for (BlockActor b : blockActors) b.update();
                     updateCurrentTetromino();
                     point = board.numLinesRemoved;
+                    System.out.println(board.nextPiece.name());
                 }
             }
         }));

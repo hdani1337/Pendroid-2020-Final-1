@@ -2,6 +2,7 @@ package hu.cehessteg.TetrisClasses;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Random;
 
 public class Board {
 
@@ -17,11 +18,13 @@ public class Board {
     public int curX = 0;//Jelenlegi tetromino X koordinátája
     public int curY = 0;//Jelenlegi tetromino Y koordinátája
     public Tetromino curPiece;//Jelenlegi tetromino alakja
+    public static ShapeType nextPiece;//Következő tetromino alakja
     public ShapeType[] board;//Játéktábla
 
     /**Üres konstruktor a példányosítás miatt**/
     public Board() {
-
+        isPaused = false;
+        isGameOver = false;
     }
 
     /**Visszaadja az adott koordinátán levő kocka tetrominojának alakját**/
@@ -33,6 +36,7 @@ public class Board {
     public void start() {
         curPiece = new Tetromino();//Jelenlegi tetromino példányosítása
         board = new ShapeType[BOARD_WIDTH * BOARD_HEIGHT];//Játéktábla létrehozása
+        setRandomShape();
         clearBoard();
         newPiece();
     }
@@ -83,7 +87,8 @@ public class Board {
 
     /**Új tetromino**/
     private void newPiece() {
-        curPiece.setRandomShape();
+        curPiece.setShape(nextPiece);
+        setRandomShape();
         curX = BOARD_WIDTH / 2 + 1;
         curY = BOARD_HEIGHT - 1 + curPiece.minY();
 
@@ -183,5 +188,14 @@ public class Board {
                 break;
             }
         }
+    }
+
+    /**Új random alakzat beállítása**/
+    public void setRandomShape() {
+        Random r = new Random();
+        int x = Math.abs(r.nextInt()) % 7 + 1;
+
+        ShapeType[] values = ShapeType.values();
+        nextPiece = values[x];
     }
 }

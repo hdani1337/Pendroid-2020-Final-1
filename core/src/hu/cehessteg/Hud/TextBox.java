@@ -38,6 +38,14 @@ public class TextBox extends MyGroup implements IPrettyStage {
         this(game,text, VERDANA_FONT, 1);
     }
 
+    public TextBox(MyGame game, String text, float scale) {
+        this(game,text, VERDANA_FONT, scale);
+    }
+
+    public TextBox(MyGame game, String text, String fontType) {
+        this(game,text, fontType, 1);
+    }
+
     /**
      * FŐ KONSTRUKTOR
      * **/

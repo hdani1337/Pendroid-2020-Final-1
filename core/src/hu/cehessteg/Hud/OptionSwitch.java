@@ -48,20 +48,16 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
     @Override
     public void assignment() {
         switch (type){
-            case BALLTYPE:
-                indexMax = 4;
-                indexMin = 1;
-                indexCounter = OptionsStage.ballType;
-                break;
             case MUTE:
                 indexMin = 0;
                 indexMax = 1;
                 indexCounter = (muted)?0:1;
                 break;
-            case BALLCOUNT:
-                indexMax = 3;
+            case DIFFICULTY:
+                indexMax = 4;
                 indexMin = 1;
-                indexCounter = OptionsStage.ballCount;
+                indexCounter = OptionsStage.difficulty;
+                break;
         }
 
         if(indexCounter == 0) indexCounter = indexMin;
@@ -70,7 +66,7 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
         increment = new OneSpriteStaticActor(game,BUTTON_TEXTURE);
         background = new OneSpriteStaticActor(game,TEXTBOX_TEXTURE);
 
-        text = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont((type==OptionSwitchType.BALLCOUNT)?RETRO_FONT:VERDANA_FONT), Color.WHITE)) {
+        text = new MyLabel(game, "", new Label.LabelStyle(game.getMyAssetManager().getFont(RETRO_FONT), Color.WHITE)) {
             @Override
             public void init() {
                 setAlignment(0);
@@ -87,9 +83,8 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
         decrement.setSize(120,120);
         increment.setSize(120,120);
         text.setFontScale(2);
-        if(type == OptionSwitchType.BALLCOUNT) text.setFontScale(1.75f);
         text.setAlignment(Align.center);
-        background.setSize((getMaxRowWidth()+1)*36,256);
+        background.setSize((getMaxRowWidth()+1)*44,256);
     }
 
     @Override
@@ -160,28 +155,28 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
 
     private void indexCounterChanged(){
         switch (type){
-            case BALLTYPE:
+            case DIFFICULTY:
                 switch (indexCounter){
                     case 1: default:{
                         decrement.setVisible(false);
-                        text.setText("Labda fajtája\nFocilabda");
+                        text.setText("Nehézség\nKönnyű");
                         break;
                     }
                     case 2:{
-                        text.setText("Labda fajtája\nRöplabda");
+                        text.setText("Nehézség\nNormál");
                         break;
                     }
                     case 3:{
-                        text.setText("Labda fajtája\nKosárlabda");
+                        text.setText("Nehézség\nNehéz");
                         break;
                     }
                     case 4:{
                         increment.setVisible(false);
-                        text.setText("Labda fajtája\nBaseball-labda");
+                        text.setText("Nehézség\nLehetetlen");
                         break;
                     }
                 }
-                OptionsStage.ballType = indexCounter;
+                OptionsStage.difficulty = indexCounter;
                 break;
             case MUTE:
                 switch (indexCounter){
@@ -198,25 +193,6 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
                         break;
                     }
                 }
-                break;
-            case BALLCOUNT:
-                switch (indexCounter){
-                    case 1: default:{
-                        decrement.setVisible(false);
-                        text.setText("Labdák mennyisége\n1");
-                        break;
-                    }
-                    case 2:{
-                        text.setText("Labdák mennyisége\n2");
-                        break;
-                    }
-                    case 3:{
-                        increment.setVisible(false);
-                        text.setText("Labdák mennyisége\n3");
-                        break;
-                    }
-                }
-                OptionsStage.ballCount = indexCounter;
                 break;
         }
         setSizes();

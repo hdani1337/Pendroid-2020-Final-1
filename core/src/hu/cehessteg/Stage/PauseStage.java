@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.Screen.GameScreen;
+import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -44,7 +45,7 @@ public class PauseStage extends PrettyStage {
     @Override
     public void assignment() {
         info = new TextBox(game, "Megállítva",TextBox.VERDANA_FONT,2f);
-        pontok = new TextBox(game, "Pontszámok\nHamarosan!",TextBox.RETRO_FONT,1.5f);
+        pontok = new TextBox(game, "Pontszámok\n"+GameStage.point,TextBox.RETRO_FONT,1.5f);
         again = new TextBox(game, "Folytatás",TextBox.VERDANA_FONT,1.5f);
         menu = new TextBox(game, "Menü",TextBox.VERDANA_FONT,1.5f);
 
@@ -77,7 +78,7 @@ public class PauseStage extends PrettyStage {
                 super.clicked(event, x, y);
                 if(getScreen() != null) {
                     if (getScreen() instanceof GameScreen){}
-                        //BallStage.isAct = true;
+                        Board.isPaused = false;
                 }
             }
         });
@@ -146,8 +147,8 @@ public class PauseStage extends PrettyStage {
         super.act(delta);
         if(getScreen() != null) {
             if (getScreen() instanceof GameScreen) {
-                /*if (!BallStage.isAct && !BallStage.isGameOver) pause(null);
-                else if (BallStage.isAct && addedActors) resume(null);*/
+                if (Board.isPaused && !Board.isGameOver) pause(null);
+                else if (!Board.isPaused && addedActors) resume(null);
             }
         }
     }
@@ -155,10 +156,10 @@ public class PauseStage extends PrettyStage {
     @Deprecated
     private void pause(Music music){
         if(getScreen() != null && (getScreen() instanceof GameScreen)){
-           /* if(!pontok.text.equals("Jelenlegi pontszámod\n"+BallStage.score)) {
-                pontok.setText("Jelenlegi pontszámod\n"+BallStage.score);
+           if(!pontok.text.equals("Jelenlegi pontszámod\n"+GameStage.point)) {
+                pontok.setText("Jelenlegi pontszámod\n"+GameStage.point);
                 pontok.setX(getViewport().getWorldWidth()/2-pontok.getWidth()/2);
-            }*/
+            }
         }
         //Adjuk hozzá a gombokat a stagehez ha még nincsenek rajta
         if(!addedActors) {
