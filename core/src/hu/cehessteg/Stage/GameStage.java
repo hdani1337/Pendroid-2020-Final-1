@@ -31,7 +31,7 @@ public class GameStage extends PrettySimpleStage {
     public static int point;
 
     public GameStage(MyGame game) {
-        super(new ResponseViewport(10),game);
+        super(new ResponseViewport(Board.BOARD_WIDTH),game);
     }
 
     @Override
@@ -120,7 +120,7 @@ public class GameStage extends PrettySimpleStage {
     }
 
     private void addTimers(){
-        addTimer(new TickTimer((5-OptionsStage.difficulty)/8.0f,true,new TickTimerListener(){
+        addTimer(new TickTimer((5-OptionsStage.difficulty)/(board.BOARD_HEIGHT*0.5f),true,new TickTimerListener(){
             @Override
             public void onRepeat(TickTimer sender) {
                 super.onRepeat(sender);

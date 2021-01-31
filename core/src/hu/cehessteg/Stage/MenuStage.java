@@ -28,8 +28,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 //TODO ESETLEG VALAMI ANIMÁCIÓ A HÁTTÉRBE (KÁRTYÁK UGRÁLNAK, STB)
 
 public class MenuStage extends PrettySimpleStage {
-    public static final String STARTBUTTON_TEXTURE = "pic/gombok/jatek.png";
-    public static final String OPTIONSBUTTON_TEXTURE = "pic/gombok/opciok.png";
+    public static final String STARTBUTTON_TEXTURE = "play.png";
+    public static final String OPTIONSBUTTON_TEXTURE = "options.png";
     public static final String INFOBUTTON_TEXTURE = "pic/gombok/info.png";
     public static final String EXITBUTTON_TEXTURE = "pic/gombok/x.png";
 

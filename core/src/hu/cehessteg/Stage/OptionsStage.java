@@ -1,13 +1,21 @@
 package hu.cehessteg.Stage;
 
+import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.TextureRegion;
+import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.Slider;
+import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 
 import hu.cehessteg.Hud.Logo;
 import hu.cehessteg.Hud.OptionSwitch;
 import hu.cehessteg.Hud.OptionSwitchType;
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.SoundManager;
+import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -28,13 +36,17 @@ public class OptionsStage extends PrettyStage {
     }
 
     public static int difficulty = preferences.getInteger("difficulty");
+    public static int size = preferences.getInteger("size");
     public static int highscore = preferences.getInteger("highscore");
 
     private Logo optionsLogo;
 
     private OneSpriteStaticActor backButton;
-    private OptionSwitch difficultyButton;
     private OptionSwitch muteButton;
+    private Slider difficultySlider;
+    private Slider sizeSlider;
+    private TextBox sizeText;
+    private TextBox difficultyText;
 
     private boolean setBack;
 
@@ -49,14 +61,50 @@ public class OptionsStage extends PrettyStage {
             SoundManager.menuMusic.play();
         setBack = false;
         backButton = new OneSpriteStaticActor(game,BACKBUTTON_TEXTURE);
-        difficultyButton = new OptionSwitch(game, OptionSwitchType.DIFFICULTY);
         muteButton = new OptionSwitch(game, OptionSwitchType.MUTE);
         optionsLogo = new Logo(game, Logo.LogoType.OPTIONS);
+        sizeText = new TextBox(game,"Pálya szélessége:\n"+size+"\n", TextBox.RETRO_FONT,1.25f);
+        sizeSlider = new Slider(10, 50, 1, false, getSliderStyle());
+        sizeSlider.setValue(size);
+        sizeSlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                System.out.println(sizeSlider.getValue());
+                size = (int) sizeSlider.getValue();
+                Board.BOARD_WIDTH = size;
+                sizeText.setText("Pálya szélessége:\n"+size+"\n");
+                setPositions();
+            }
+        });
+
+        difficultyText = new TextBox(game,"Nehézség:\nNormál\n", TextBox.RETRO_FONT,1.25f);
+        difficultySlider = new Slider(1, 4, 1, false, getSliderStyle());
+        difficultySlider.setValue(difficulty);
+        difficultySlider.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                difficultySliderOnChange();
+            }
+        });
+        difficultySliderOnChange();
+    }
+
+    private void difficultySliderOnChange(){
+        difficulty = (int) difficultySlider.getValue();
+        String dif = "";
+        if(difficulty == 1) dif = "Könnyü";
+        else if(difficulty == 2) dif = "Normál";
+        else if(difficulty == 3) dif = "Nehéz";
+        else if(difficulty == 4) dif = "Lehetetlen";
+        difficultyText.setText("Nehézség:\n"+dif+"\n");
+        setPositions();
     }
 
     @Override
     public void setSizes() {
         backButton.setSize(180,180);
+        sizeSlider.setWidth(300);
+        difficultySlider.setWidth(200);
     }
 
     @Override
@@ -64,8 +112,11 @@ public class OptionsStage extends PrettyStage {
         backButton.setRotation(180);
         backButton.setPosition(getViewport().getWorldWidth() - backButton.getWidth()-16,16);
         optionsLogo.setPosition(getViewport().getWorldWidth()/2 - optionsLogo.getWidth()/2, getViewport().getWorldHeight() - optionsLogo.getHeight()*1.15f);
-        difficultyButton.setPosition(getViewport().getWorldWidth()/2-difficultyButton.getWidth()/2,getViewport().getWorldHeight()*0.52f);
-        muteButton.setPosition(getViewport().getWorldWidth()/2-muteButton.getWidth()/2,getViewport().getWorldHeight()*0.7f);
+        difficultySlider.setPosition(getViewport().getWorldWidth()/2-difficultySlider.getWidth()/2,getViewport().getWorldHeight()*0.425f);
+        difficultyText.setPosition(difficultySlider.getX() + difficultySlider.getWidth()/2-difficultyText.getWidth()/2,difficultySlider.getY()-20);
+        muteButton.setPosition(getViewport().getWorldWidth()/2-muteButton.getWidth()/2,getViewport().getWorldHeight()*0.625f);
+        sizeSlider.setPosition(getViewport().getWorldWidth()/2-sizeSlider.getWidth()/2,getViewport().getWorldHeight()*0.225f);
+        sizeText.setPosition(sizeSlider.getX() + sizeSlider.getWidth()/2-sizeText.getWidth()/2,sizeSlider.getY()-20);
     }
 
     @Override
@@ -77,6 +128,7 @@ public class OptionsStage extends PrettyStage {
                 super.clicked(event, x, y);
                 preferences.putInteger("difficulty",difficulty);
                 preferences.putBoolean("muted",muted);
+                preferences.putInteger("size",size);
                 preferences.flush();
                 setBack = true;
             }
@@ -91,11 +143,12 @@ public class OptionsStage extends PrettyStage {
     @Override
     public void addActors() {
         addActor(optionsLogo);
-        addActor(difficultyButton);
+        addActor(difficultyText);
+        addActor(difficultySlider);
         addActor(muteButton);
         addActor(backButton);
-
-
+        addActor(sizeText);
+        addActor(sizeSlider);
     }
     //endregion
     //region Act metódusai
@@ -146,7 +199,25 @@ public class OptionsStage extends PrettyStage {
         optionsLogo.setAlpha(alpha);
         backButton.setAlpha(alpha);
         muteButton.setAlpha(alpha);
-        difficultyButton.setAlpha(alpha);
+        sizeSlider.setColor(1,1,1,alpha);
+        difficultySlider.setColor(1,1,1,alpha);
+        difficultyText.setAlpha(alpha);
+        sizeText.setAlpha(alpha);
     }
     //endregion
+
+    public Slider.SliderStyle getSliderStyle(){
+        Slider.SliderStyle style;
+        style = new Slider.SliderStyle();
+
+        style.knob = new TextureRegionDrawable(new TextureRegion(game.getMyAssetManager().getTexture("buttons/haromszog.png")));
+        style.background = new TextureRegionDrawable(new TextureRegion(game.getMyAssetManager().getTexture("colors/rainbow.png")));
+
+
+        style.knob.setMinHeight(40);
+        style.knob.setMinWidth(40);
+
+        style.background.setTopHeight(16);
+        return style;
+    }
 }

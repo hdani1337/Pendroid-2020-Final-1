@@ -4,11 +4,13 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import hu.cehessteg.Stage.OptionsStage;
+
 public class Board {
 
     /**Tábla méretei**/
-    public int BOARD_WIDTH = 10;//Szélesség
-    public int BOARD_HEIGHT = 22;//Magasság
+    public static int BOARD_WIDTH = OptionsStage.size;//Szélesség
+    public int BOARD_HEIGHT = 11;//Magasság
 
     /**További globális változók**/
     public boolean isFallingFinished = false;//Befejeződött e a tetromino mozgása

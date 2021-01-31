@@ -80,11 +80,10 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
 
     @Override
     public void setSizes() {
-        decrement.setSize(120,120);
-        increment.setSize(120,120);
-        text.setFontScale(2);
+        decrement.setSize(112,112);
+        increment.setSize(112,112);
         text.setAlignment(Align.center);
-        background.setSize((getMaxRowWidth()+1)*44,256);
+        background.setSize((getMaxRowWidth()+1)*28,150);
     }
 
     @Override
@@ -92,6 +91,7 @@ public class OptionSwitch extends MyGroup implements IPrettyStage {
         decrement.setPosition(0,0);
         background.setPosition(decrement.getX()+decrement.getWidth()+24,decrement.getY()+decrement.getHeight()/2-background.getHeight()/2);
         text.setAlignment(Align.center);
+        text.setFontScale(1.25f);
         text.setPosition(background.getX()+background.getWidth()/2-text.getWidth()/2,background.getY()+background.getHeight()/2-text.getHeight()/2);
         increment.setPosition(background.getX()+background.getWidth()+24,0);
     }
