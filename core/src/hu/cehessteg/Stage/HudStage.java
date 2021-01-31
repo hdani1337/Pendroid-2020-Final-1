@@ -23,18 +23,18 @@ public class HudStage extends PrettyStage {
     @Override
     public void assignment() {
         pause = new Pause(game);
-        scoreBoard = new TextBox(game,"0",TextBox.RETRO_FONT,2.5f);
+        scoreBoard = new TextBox(game,"0",TextBox.RETRO_FONT,1.5f);
     }
 
     @Override
     public void setSizes() {
-        pause.setSize(180,180);
+        pause.setSize(100,100);
     }
 
     @Override
     public void setPositions() {
-        pause.setPosition(15,getViewport().getWorldHeight()-pause.getHeight()-15);
-        scoreBoard.setPosition(getViewport().getWorldWidth()-scoreBoard.getWidth()-15,getViewport().getWorldHeight()-scoreBoard.getHeight()-15);
+        pause.setPosition(getViewport().getWorldWidth()-pause.getWidth()-15,getViewport().getWorldHeight()-pause.getHeight()-15);
+        scoreBoard.setPosition(getViewport().getWorldWidth()/2-scoreBoard.getWidth()/2,getViewport().getWorldHeight()-scoreBoard.getHeight()-15);
     }
 
     @Override
@@ -56,9 +56,9 @@ public class HudStage extends PrettyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        /*if(scoreBoard.text != BallStage.score+"") {
-            scoreBoard.setText(BallStage.score + "");
+        if(scoreBoard.text != GameStage.point+"") {
+            scoreBoard.setText(GameStage.point + "");
             setPositions();
-        }*/
+        }
     }
 }

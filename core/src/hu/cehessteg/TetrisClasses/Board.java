@@ -11,8 +11,8 @@ public class Board {
 
     /**További globális változók**/
     public boolean isFallingFinished = false;//Befejeződött e a tetromino mozgása
-    public boolean isPaused = false;//Megvan e állítva a játék
-    public boolean isGameOver = false;//Vége van e a játéknak
+    public static boolean isPaused = false;//Megvan e állítva a játék
+    public static boolean isGameOver = false;//Vége van e a játéknak
     public int numLinesRemoved = 0;//Teli sorok száma
     public int curX = 0;//Jelenlegi tetromino X koordinátája
     public int curY = 0;//Jelenlegi tetromino Y koordinátája

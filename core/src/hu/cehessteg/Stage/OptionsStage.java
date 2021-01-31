@@ -29,6 +29,7 @@ public class OptionsStage extends PrettyStage {
 
     public static int ballType = preferences.getInteger("ballType");
     public static int ballCount = preferences.getInteger("ballCount");
+    public static int highscore = preferences.getInteger("highscore");
 
     private Logo optionsLogo;
 

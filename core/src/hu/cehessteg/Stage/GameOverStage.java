@@ -5,6 +5,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.Screen.GameScreen;
+import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -12,6 +13,7 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.PrettyStage;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 
 import static hu.cehessteg.SoundManager.gameMusic;
+import static hu.cehessteg.Stage.OptionsStage.highscore;
 import static hu.cehessteg.TetrisGame.muted;
 import static hu.cehessteg.TetrisGame.preferences;
 
@@ -44,7 +46,7 @@ public class GameOverStage extends PrettyStage {
     public void assignment() {
         info = new TextBox(game, "Vége a játéknak!",TextBox.VERDANA_FONT,2f);
         pontok = new TextBox(game, "Elért pontszámod\n-NULL-",TextBox.RETRO_FONT,1.5f);
-        rekord = new TextBox(game, "Rekordod\n",TextBox.RETRO_FONT,1.5f);
+        rekord = new TextBox(game, "Rekordod\n"+highscore,TextBox.RETRO_FONT,1.5f);
         again = new TextBox(game, "Új játék",TextBox.VERDANA_FONT,1.5f);
         menu = new TextBox(game, "Menü",TextBox.VERDANA_FONT,1.5f);
 
@@ -148,10 +150,10 @@ public class GameOverStage extends PrettyStage {
          * **/
         if(getScreen() != null){
             if(getScreen() instanceof GameScreen){
-                /*if(BallStage.isGameOver && !BallStage.isAct){
+                if(Board.isGameOver && !Board.isPaused){
                     if(gameMusic != null) gameMusic.stop();
                     makeStage();
-                }*/
+                }
             }
         }
     }
@@ -159,13 +161,13 @@ public class GameOverStage extends PrettyStage {
     private float alpha;
     private boolean addedActors;
     private void makeStage(){
-       /* pontok.setText("Elért pontszámod\n"+BallStage.score);
-        if(BallStage.score > highscore){
+        pontok.setText("Elért pontszámod\n"+GameStage.point);
+        if(GameStage.point > highscore){
             rekord = new TextBox(game, "Megdöntötted a rekordod!",TextBox.VERDANA_FONT,1.5f);
-            highscore = BallStage.score;
+            highscore = GameStage.point;
             preferences.putLong("highscore",highscore);
             preferences.flush();
-        }*/
+        }
 
         setPositions();
 
