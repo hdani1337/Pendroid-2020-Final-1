@@ -28,14 +28,14 @@ public class HudStage extends PrettyStage {
     @Override
     public void assignment() {
         pause = new Pause(game);
-        scoreBoard = new TextBox(game,"0",TextBox.RETRO_FONT,1.5f);
+        scoreBoard = new TextBox(game,"  0  ",TextBox.RETRO_FONT,1.5f);
         frameActor = new OneSpriteStaticActor(game,"keret.png");
         nextActor = new NextActor(game);
     }
 
     @Override
     public void setSizes() {
-        pause.setSize(100,100);
+        pause.setSize(120,120);
         frameActor.setSize((getViewport().getWorldWidth()/frameActor.getWidth())*frameActor.getWidth(),(getViewport().getWorldWidth()/frameActor.getWidth())*frameActor.getHeight());
     }
 
@@ -68,8 +68,8 @@ public class HudStage extends PrettyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
-        if(scoreBoard.text != GameStage.point+"") {
-            scoreBoard.setText(GameStage.point + "");
+        if(scoreBoard.text != "  "+GameStage.point+"  ") {
+            scoreBoard.setText("  "+GameStage.point + "  ");
             setPositions();
         }
         if(nextActor.shapeType != Board.nextPiece) {

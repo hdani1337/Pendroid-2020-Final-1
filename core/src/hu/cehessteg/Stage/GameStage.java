@@ -21,6 +21,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 
+import static hu.cehessteg.Stage.OptionsStage.difficulty;
+
 public class GameStage extends PrettySimpleStage {
     private ArrayList<BlockActor> blockActors;
     private ArrayList<BlockActor> currentTetromino;
@@ -120,7 +122,7 @@ public class GameStage extends PrettySimpleStage {
     }
 
     private void addTimers(){
-        addTimer(new TickTimer((5-OptionsStage.difficulty)/(board.BOARD_HEIGHT*0.5f),true,new TickTimerListener(){
+        addTimer(new TickTimer((5- difficulty)/(board.BOARD_HEIGHT*0.5f),true,new TickTimerListener(){
             @Override
             public void onRepeat(TickTimer sender) {
                 super.onRepeat(sender);
@@ -128,7 +130,7 @@ public class GameStage extends PrettySimpleStage {
                     board.update();
                     for (BlockActor b : blockActors) b.update();
                     updateCurrentTetromino();
-                    point = board.numLinesRemoved;
+                    point = board.numLinesRemoved*25*difficulty;
                     System.out.println(board.nextPiece.name());
                 }
             }

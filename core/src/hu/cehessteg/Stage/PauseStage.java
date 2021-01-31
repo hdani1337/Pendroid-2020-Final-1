@@ -44,10 +44,10 @@ public class PauseStage extends PrettyStage {
     //region Absztrakt metódusok
     @Override
     public void assignment() {
-        info = new TextBox(game, "Megállítva",TextBox.VERDANA_FONT,2f);
+        info = new TextBox(game, "Megállítva",TextBox.RETRO_FONT,2f);
         pontok = new TextBox(game, "Pontszámok\n"+GameStage.point,TextBox.RETRO_FONT,1.5f);
-        again = new TextBox(game, "Folytatás",TextBox.VERDANA_FONT,1.5f);
-        menu = new TextBox(game, "Menü",TextBox.VERDANA_FONT,1.5f);
+        again = new TextBox(game, "Folytatás",TextBox.RETRO_FONT,1.5f);
+        menu = new TextBox(game, "Kilépés",TextBox.RETRO_FONT,1.5f);
 
         black = new OneSpriteStaticActor(game, BLACK_TEXTURE);
 
@@ -64,10 +64,10 @@ public class PauseStage extends PrettyStage {
 
     @Override
     public void setPositions() {
-        info.setPosition(getViewport().getWorldWidth()/2-info.getWidth()/2,getViewport().getWorldHeight()*0.75f);
-        pontok.setPosition(getViewport().getWorldWidth()/2-pontok.getWidth()/2,getViewport().getWorldHeight()*0.52f);
-        again.setPosition(getViewport().getWorldWidth()/2-again.getWidth()/2,getViewport().getWorldHeight()*0.37f);
-        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,getViewport().getWorldHeight()*0.25f);
+        info.setPosition(getViewport().getWorldWidth()/2-info.getWidth()/2,getViewport().getWorldHeight()*0.65f);
+        pontok.setPosition(getViewport().getWorldWidth()/2-pontok.getWidth()/2,info.getY()-pontok.getHeight()-48);
+        again.setPosition(getViewport().getWorldWidth()/2-again.getWidth()/2,pontok.getY()-again.getHeight()-48);
+        menu.setPosition(getViewport().getWorldWidth()/2-menu.getWidth()/2,again.getY()-menu.getHeight()-48);
     }
 
     @Override
@@ -156,8 +156,8 @@ public class PauseStage extends PrettyStage {
     @Deprecated
     private void pause(Music music){
         if(getScreen() != null && (getScreen() instanceof GameScreen)){
-           if(!pontok.text.equals("Jelenlegi pontszámod\n"+GameStage.point)) {
-                pontok.setText("Jelenlegi pontszámod\n"+GameStage.point);
+           if(!pontok.text.equals("Pontszámod: "+GameStage.point)) {
+                pontok.setText("Pontszámod: "+GameStage.point);
                 pontok.setX(getViewport().getWorldWidth()/2-pontok.getWidth()/2);
             }
         }

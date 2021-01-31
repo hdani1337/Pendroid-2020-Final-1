@@ -77,9 +77,9 @@ public class MenuStage extends PrettySimpleStage {
     public void setSizes() {
         for (OneSpriteStaticActor a : menuElements)
            if(a != logo)
-               a.setSize(a.getWidth()*0.004f,a.getHeight()*0.004f);
+               a.setSize(a.getWidth()*0.01f,a.getHeight()*0.01f);
 
-        logo.setSize(logo.getWidth()*0.008f,logo.getHeight()*0.008f);
+        logo.setSize(logo.getWidth()*0.015f,logo.getHeight()*0.015f);
         logo.setOrigintoCenter();
     }
 
@@ -90,14 +90,14 @@ public class MenuStage extends PrettySimpleStage {
         start.setX(getViewport().getWorldWidth()/2 - start.getWidth()/2);
         start.setY(getViewport().getWorldHeight()*0.65f - start.getHeight()/2);
 
-        info.setY(start.getY() - info.getHeight()*1.4f);
+        info.setY(start.getY() - info.getHeight()*1.2f);
         info.setX((getViewport().getWorldWidth()/2 - info.getWidth()/2));
 
-        options.setY(info.getY() - options.getHeight()*1.4f);
+        options.setY(info.getY() - options.getHeight()*1.2f);
         options.setX((getViewport().getWorldWidth()/2 - options.getWidth()/2));
 
-        exit.setY(exit.getHeight()*0.05f);
-        exit.setX(getViewport().getWorldWidth() - exit.getWidth()*1.05f);
+        exit.setY(exit.getHeight()*0.055f);
+        exit.setX(getViewport().getWorldWidth() / 2 - exit.getWidth()/2);
     }
 
     @Override
