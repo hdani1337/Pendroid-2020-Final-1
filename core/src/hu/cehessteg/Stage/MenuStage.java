@@ -30,8 +30,8 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 public class MenuStage extends PrettySimpleStage {
     public static final String STARTBUTTON_TEXTURE = "play.png";
     public static final String OPTIONSBUTTON_TEXTURE = "options.png";
-    public static final String INFOBUTTON_TEXTURE = "pic/gombok/info.png";
-    public static final String EXITBUTTON_TEXTURE = "pic/gombok/x.png";
+    public static final String INFOBUTTON_TEXTURE = "info.png";
+    public static final String EXITBUTTON_TEXTURE = "close.png";
 
     public static AssetList assetList = new AssetList();
     static {

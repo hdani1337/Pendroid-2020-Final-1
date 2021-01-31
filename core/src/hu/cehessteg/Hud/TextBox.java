@@ -26,7 +26,7 @@ public class TextBox extends MyGroup implements IPrettyStage {
     //region Változók
     public String text;//Szöveg
     private OneSpriteStaticActor textBackground;//Szöveg háttere
-    private MyLabel textLabel;//Szöveg label
+    public MyLabel textLabel;//Szöveg label
     private float scale;//Méretezési skála
     private String fontType;//Betűtípus
     //endregion

@@ -1,5 +1,6 @@
 package hu.cehessteg.Screen;
 
+import hu.cehessteg.Stage.GameBackgroundStage;
 import hu.cehessteg.Stage.GameOverStage;
 import hu.cehessteg.Stage.GameStage;
 import hu.cehessteg.Stage.HudStage;
@@ -25,6 +26,7 @@ public class GameScreen extends MyScreen {
 
     @Override
     protected void afterAssetsLoaded() {
+        addStage(new GameBackgroundStage(game),0,false);
         addStage(new GameStage(game),1,true);
         addStage(new HudStage(game),2, true);
         addStage(new PauseStage(game),3, true);

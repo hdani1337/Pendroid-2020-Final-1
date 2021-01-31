@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import hu.cehessteg.Stage.HudStage;
 import hu.cehessteg.Stage.OptionsStage;
 
 public class Board {

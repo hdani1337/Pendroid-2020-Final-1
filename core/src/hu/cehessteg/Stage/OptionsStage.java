@@ -64,7 +64,7 @@ public class OptionsStage extends PrettyStage {
         muteButton = new OptionSwitch(game, OptionSwitchType.MUTE);
         optionsLogo = new Logo(game, Logo.LogoType.OPTIONS);
         sizeText = new TextBox(game,"Pálya szélessége:\n"+size+"\n", TextBox.RETRO_FONT,1.25f);
-        sizeSlider = new Slider(10, 50, 1, false, getSliderStyle());
+        sizeSlider = new Slider(10, 25, 1, false, getSliderStyle());
         sizeSlider.setValue(size);
         sizeSlider.addListener(new ChangeListener() {
             @Override

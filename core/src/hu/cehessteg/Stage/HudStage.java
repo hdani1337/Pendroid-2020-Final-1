@@ -1,10 +1,12 @@
 package hu.cehessteg.Stage;
 
+import hu.cehessteg.Actor.NextActor;
 import hu.cehessteg.Hud.Pause;
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
+import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.PrettyStage;
 
 public class HudStage extends PrettyStage {
@@ -16,7 +18,8 @@ public class HudStage extends PrettyStage {
     //public static BallStage stage;//Hátha kell a GameStageből valami
     private Pause pause;
     private TextBox scoreBoard;
-    private TextBox nextPiece;
+    private OneSpriteStaticActor frameActor;
+    public static NextActor nextActor;
 
     public HudStage(MyGame game) {
         super(game);
@@ -26,19 +29,22 @@ public class HudStage extends PrettyStage {
     public void assignment() {
         pause = new Pause(game);
         scoreBoard = new TextBox(game,"0",TextBox.RETRO_FONT,1.5f);
-        nextPiece = new TextBox(game,"Next: -NULL-",TextBox.RETRO_FONT);
+        frameActor = new OneSpriteStaticActor(game,"keret.png");
+        nextActor = new NextActor(game);
     }
 
     @Override
     public void setSizes() {
         pause.setSize(100,100);
+        frameActor.setSize((getViewport().getWorldWidth()/frameActor.getWidth())*frameActor.getWidth(),(getViewport().getWorldWidth()/frameActor.getWidth())*frameActor.getHeight());
     }
 
     @Override
     public void setPositions() {
-        pause.setPosition(getViewport().getWorldWidth()-pause.getWidth()-15,getViewport().getWorldHeight()-pause.getHeight()-15);
-        scoreBoard.setPosition(getViewport().getWorldWidth()/2-scoreBoard.getWidth()/2,getViewport().getWorldHeight()-scoreBoard.getHeight()-15);
-        nextPiece.setPosition(15,getViewport().getWorldHeight()-nextPiece.getHeight()-15);
+        frameActor.setY(getViewport().getWorldHeight()-frameActor.getHeight());
+        pause.setPosition(getViewport().getWorldWidth()-pause.getWidth()-36,frameActor.getY() + (getViewport().getWorldHeight()-frameActor.getY())/2 - pause.getHeight()/2);
+        scoreBoard.setPosition(getViewport().getWorldWidth()/2-scoreBoard.getWidth()/2,frameActor.getY() + (getViewport().getWorldHeight()-frameActor.getY())/2 - scoreBoard.getHeight()/2);
+        nextActor.setPosition(36,frameActor.getY() + (getViewport().getWorldHeight()-frameActor.getY())/2 - nextActor.getHeight()/2);
     }
 
     @Override
@@ -53,9 +59,10 @@ public class HudStage extends PrettyStage {
 
     @Override
     public void addActors() {
+        addActor(frameActor);
         addActor(scoreBoard);
         addActor(pause);
-        addActor(nextPiece);
+        addActor(nextActor);
     }
 
     @Override
@@ -65,9 +72,9 @@ public class HudStage extends PrettyStage {
             scoreBoard.setText(GameStage.point + "");
             setPositions();
         }
-        if(nextPiece.text != "Next: " + Board.nextPiece.name()){
-            nextPiece.setText("Next: " + Board.nextPiece.name());
-            setPositions();
+        if(nextActor.shapeType != Board.nextPiece) {
+            nextActor.update(Board.nextPiece);
+            nextActor.setPosition(36,frameActor.getY() + (getViewport().getWorldHeight()-frameActor.getY())/2 - nextActor.getHeight()/2);
         }
     }
 }
