@@ -49,7 +49,7 @@ public class GameStage extends PrettySimpleStage {
         for (int i = 0; i < 4; i++)
             currentTetromino.add(new BlockActor(game, board, new Vector2(board.curX + board.curPiece.x(i),board.curY - board.curPiece.y(i)),world));
 
-        controlActor = new OneSpriteStaticActor(game,"badlogic.jpg");
+        controlActor = new OneSpriteStaticActor(game, BlockActor.BLOCK_TEXTURE);
         controlActor.setColor(0,0,0,0);
     }
 

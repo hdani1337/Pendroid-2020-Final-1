@@ -12,12 +12,13 @@ import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorld;
 import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorldHelper;
 
 public class BlockActor extends OneSpriteStaticActor {
+    public static final String BLOCK_TEXTURE = "badlogic.jpg";
     public Board board;
     public Vector2 position;
     public float size = 1;
 
     public BlockActor(MyGame game, Board board, Vector2 position, SimpleWorld world) {
-        super(game, "badlogic.jpg");
+        super(game, BLOCK_TEXTURE);
         this.board = board;
         this.position = position;
         setSize(size,size);
