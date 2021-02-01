@@ -160,7 +160,7 @@ public class GameOverStage extends PrettyStage {
     private void makeStage(){
         pontok.setText("Elért pontszámod: " + GameStage.point + "\nRekordod: "+highscore);
         if(GameStage.point > highscore){
-            pontok = new TextBox(game, "Elért pontszámod: "+GameStage.point+"\nMegdöntötted a rekordod!",TextBox.RETRO_FONT,1.5f);
+            pontok.setText("Elért pontszámod: "+GameStage.point+"\nMegdöntötted a rekordod!");
             highscore = GameStage.point;
             preferences.putLong("highscore",highscore);
             preferences.flush();

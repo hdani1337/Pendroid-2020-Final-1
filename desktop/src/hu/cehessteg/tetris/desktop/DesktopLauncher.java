@@ -8,7 +8,7 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new TetrisGame(), config);
-		config.width = 480;
-		config.height = 720;
+		config.width = 600;
+		config.height = 900;
 	}
 }

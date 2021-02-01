@@ -9,6 +9,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.DragListener;
 import java.util.ArrayList;
 
 import hu.cehessteg.Actor.BlockActor;
+import hu.cehessteg.SoundManager;
 import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -22,6 +23,9 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 
 import static hu.cehessteg.Stage.OptionsStage.difficulty;
+import static hu.cehessteg.Stage.OptionsStage.size;
+import static hu.cehessteg.TetrisGame.muted;
+import static hu.cehessteg.TetrisGame.preferences;
 
 public class GameStage extends PrettySimpleStage {
     private ArrayList<BlockActor> blockActors;
@@ -33,12 +37,30 @@ public class GameStage extends PrettySimpleStage {
     public static int point;
 
     public GameStage(MyGame game) {
-        super(new ResponseViewport(Board.BOARD_WIDTH),game);
+        super(new ResponseViewport(OptionsStage.size),game);
     }
 
     @Override
     public void assignment() {
+        SoundManager.assign();
+        if(!muted && SoundManager.gameMusic != null) {
+            SoundManager.gameMusic.play();
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+            System.out.println("édlfáésadflásédflsdf");
+        }
         board = new Board();
+        board.BOARD_WIDTH = size;
         board.BOARD_HEIGHT = (int) getViewport().getWorldHeight();
         board.start();
         blockActors = new ArrayList<>();

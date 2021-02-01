@@ -12,6 +12,9 @@ import hu.cehessteg.Screen.IntroScreen;
 import hu.cehessteg.Stage.LoadingStage;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 
+import static hu.cehessteg.Stage.OptionsStage.difficulty;
+import static hu.cehessteg.Stage.OptionsStage.size;
+
 public class TetrisGame extends MyGame {
 
 	public TetrisGame(){
@@ -27,6 +30,7 @@ public class TetrisGame extends MyGame {
 	@Override
 	public void create() {
 		super.create();
+		SoundManager.game = this;
 		setLoadingStage(new LoadingStage(this));
 		setScreen(new IntroScreen(this));
 		try {

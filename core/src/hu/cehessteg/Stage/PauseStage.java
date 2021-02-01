@@ -6,6 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.Screen.GameScreen;
+import hu.cehessteg.SoundManager;
 import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
@@ -147,8 +148,8 @@ public class PauseStage extends PrettyStage {
         super.act(delta);
         if(getScreen() != null) {
             if (getScreen() instanceof GameScreen) {
-                if (Board.isPaused && !Board.isGameOver) pause(null);
-                else if (!Board.isPaused && addedActors) resume(null);
+                if (Board.isPaused && !Board.isGameOver) pause(gameMusic);
+                else if (!Board.isPaused && addedActors) resume(gameMusic);
             }
         }
     }
@@ -183,6 +184,7 @@ public class PauseStage extends PrettyStage {
 
     @Deprecated
     private void resume(Music music){
+        if(music != null) music.play();
         //Áttűnéssel tűnnek el a stageről
         if(alpha > 0.05f) {
             //if(!music.isPlaying()) music.play();

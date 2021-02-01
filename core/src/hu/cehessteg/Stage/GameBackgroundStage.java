@@ -11,7 +11,7 @@ import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.PrettySimpleStage;
 
 public class GameBackgroundStage extends PrettyStage {
     public GameBackgroundStage(MyGame game) {
-        super(new ResponseViewport(Board.BOARD_WIDTH), game);
+        super(new ResponseViewport(OptionsStage.size), game);
     }
 
     @Override
@@ -42,11 +42,9 @@ public class GameBackgroundStage extends PrettyStage {
     @Override
     public void addActors() {
         for (int i = 0; i < getViewport().getWorldHeight(); i++) {
-            for (int j = 0; j < Board.BOARD_WIDTH; j++) {
+            for (int j = 0; j < OptionsStage.size; j++) {
                 addActor(new GridActor(game,j,i));
             }
         }
-
-        System.out.println(getViewport().getWorldHeight());
     }
 }

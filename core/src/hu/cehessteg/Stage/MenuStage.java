@@ -11,6 +11,7 @@ import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.Screen.GameScreen;
 import hu.cehessteg.Screen.InfoScreen;
 import hu.cehessteg.Screen.OptionsScreen;
+import hu.cehessteg.SoundManager;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -22,6 +23,8 @@ import hu.csanyzeg.master.MyBaseClasses.SimpleWorld.SimpleWorldHelper;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimer;
 import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
+
+import static hu.cehessteg.TetrisGame.muted;
 
 
 //TODO TEXTÚRÁK BEHELYETTESÍTÉSE HA KÉSZ LESZNEK
@@ -53,6 +56,9 @@ public class MenuStage extends PrettySimpleStage {
 
     @Override
     public void assignment() {
+        SoundManager.assign();
+        if(!muted && SoundManager.menuMusic != null)
+            SoundManager.menuMusic.play();
         menuElements = new ArrayList<>();
         logo = new Logo(game, Logo.LogoType.MENU);
         start = new OneSpriteStaticActor(game, STARTBUTTON_TEXTURE);

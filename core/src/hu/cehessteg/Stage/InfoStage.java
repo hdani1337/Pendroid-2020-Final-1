@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 
 import hu.cehessteg.Hud.Logo;
+import hu.cehessteg.SoundManager;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
@@ -18,6 +19,7 @@ import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
 import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
+import static hu.cehessteg.TetrisGame.muted;
 
 public class InfoStage extends PrettyStage {
     public static String BACKBUTTON_TEXTURE = "back2.png";
@@ -35,7 +37,7 @@ public class InfoStage extends PrettyStage {
     private OneSpriteStaticActor textBg;
     private MyLabel text;
     private OneSpriteStaticActor back;
-    private OneSpriteStaticActor playfieldActor;
+    //private OneSpriteStaticActor playfieldActor;
     private Logo infoLogo;
 
     private boolean setBack;
@@ -43,9 +45,9 @@ public class InfoStage extends PrettyStage {
     //region Absztrakt metódusok
     @Override
     public void assignment() {
-        //SoundManager.assign();
-        //if(!muted)
-        //    SoundManager.menuMusic.play();
+        SoundManager.assign();
+        if(!muted)
+            SoundManager.menuMusic.play();
         back = new OneSpriteStaticActor(game, BACKBUTTON_TEXTURE);
         textBg = new OneSpriteStaticActor(game,TEXTBOX_TEXTURE);
         infoLogo = new Logo(game, Logo.LogoType.INFO);
@@ -71,7 +73,7 @@ public class InfoStage extends PrettyStage {
         };
 
         //playfieldActor = new OneSpriteStaticActor(game,PLAYFIELD_TEXTURE);
-        playfieldActor.setSize(getViewport().getWorldWidth(),(getViewport().getWorldWidth()/playfieldActor.getWidth())*playfieldActor.getHeight());
+        //playfieldActor.setSize(getViewport().getWorldWidth(),(getViewport().getWorldWidth()/playfieldActor.getWidth())*playfieldActor.getHeight());
     }
 
     @Override
@@ -86,7 +88,7 @@ public class InfoStage extends PrettyStage {
         back.setPosition(getViewport().getWorldWidth() - back.getWidth()-16,16);
         infoLogo.setPosition(getViewport().getWorldWidth()/2 - infoLogo.getWidth()/2,getViewport().getWorldHeight() - infoLogo.getHeight()*1.1f);
         text.setAlignment(Align.center);
-        text.setPosition(getViewport().getWorldWidth()/2-text.getWidth()/2,playfieldActor.getHeight()*0.75f);
+        //text.setPosition(getViewport().getWorldWidth()/2-text.getWidth()/2,playfieldActor.getHeight()*0.75f);
         textBg.setPosition(text.getX()-60,text.getY()-70);
     }
 
@@ -111,7 +113,7 @@ public class InfoStage extends PrettyStage {
         addActor(infoLogo);
         addActor(textBg);
         addActor(text);
-        addActor(playfieldActor);
+        //addActor(playfieldActor);
         addActor(back);
     }
     //endregion

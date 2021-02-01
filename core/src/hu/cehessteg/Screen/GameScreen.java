@@ -9,6 +9,10 @@ import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
 import hu.csanyzeg.master.MyBaseClasses.Scene2D.MyScreen;
 
+import static hu.cehessteg.Stage.OptionsStage.difficulty;
+import static hu.cehessteg.Stage.OptionsStage.size;
+import static hu.cehessteg.TetrisGame.preferences;
+
 
 public class GameScreen extends MyScreen {
     public static AssetList assetList = new AssetList();
@@ -26,6 +30,11 @@ public class GameScreen extends MyScreen {
 
     @Override
     protected void afterAssetsLoaded() {
+        if(difficulty == 0) difficulty = 2;
+        if(size == 0) size = 10;
+        preferences.putInteger("difficulty",difficulty);
+        preferences.putInteger("size",size);
+        preferences.flush();
         addStage(new GameBackgroundStage(game),0,false);
         addStage(new GameStage(game),1,true);
         addStage(new HudStage(game),2, true);

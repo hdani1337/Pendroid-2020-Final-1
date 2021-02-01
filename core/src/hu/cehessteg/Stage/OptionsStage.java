@@ -37,7 +37,7 @@ public class OptionsStage extends PrettyStage {
 
     public static int difficulty = preferences.getInteger("difficulty");
     public static int size = preferences.getInteger("size");
-    public static int highscore = preferences.getInteger("highscore");
+    public static long highscore = preferences.getLong("highscore");
 
     private Logo optionsLogo;
 
@@ -60,6 +60,8 @@ public class OptionsStage extends PrettyStage {
         if(!muted && SoundManager.menuMusic != null)
             SoundManager.menuMusic.play();
         setBack = false;
+        if(difficulty == 0) difficulty = 1;
+        if(size == 0) size = 10;
         backButton = new OneSpriteStaticActor(game,BACKBUTTON_TEXTURE);
         muteButton = new OptionSwitch(game, OptionSwitchType.MUTE);
         optionsLogo = new Logo(game, Logo.LogoType.OPTIONS);
@@ -69,9 +71,7 @@ public class OptionsStage extends PrettyStage {
         sizeSlider.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                System.out.println(sizeSlider.getValue());
                 size = (int) sizeSlider.getValue();
-                Board.BOARD_WIDTH = size;
                 sizeText.setText("Pálya szélessége:\n"+size+"\n");
                 setPositions();
             }

@@ -10,7 +10,7 @@ import hu.cehessteg.Stage.OptionsStage;
 public class Board {
 
     /**Tábla méretei**/
-    public static int BOARD_WIDTH = OptionsStage.size;//Szélesség
+    public int BOARD_WIDTH = 10;//Szélesség
     public int BOARD_HEIGHT = 11;//Magasság
 
     /**További globális változók**/
