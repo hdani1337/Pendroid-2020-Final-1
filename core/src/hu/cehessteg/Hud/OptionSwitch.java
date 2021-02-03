@@ -21,8 +21,8 @@ import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
 import static hu.cehessteg.TetrisGame.muted;
 
 public class OptionSwitch extends MyGroup implements IPrettyStage {
-    public static String RIGHT_TEXTURE = "back.png";
-    public static String LEFT_TEXTURE = "back2.png";
+    public static String RIGHT_TEXTURE = "buttons/back.png";
+    public static String LEFT_TEXTURE = "buttons/back2.png";
 
     private OneSpriteStaticActor decrement;
     private OneSpriteStaticActor background;

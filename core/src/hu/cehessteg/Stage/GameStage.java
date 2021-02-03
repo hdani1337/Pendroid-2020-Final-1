@@ -45,19 +45,7 @@ public class GameStage extends PrettySimpleStage {
         SoundManager.assign();
         if(!muted && SoundManager.gameMusic != null) {
             SoundManager.gameMusic.play();
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
-            System.out.println("édlfáésadflásédflsdf");
+            SoundManager.gameMusic.setLooping(true);
         }
         board = new Board();
         board.BOARD_WIDTH = size;

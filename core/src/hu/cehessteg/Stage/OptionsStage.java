@@ -25,6 +25,7 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 
 import static hu.cehessteg.Stage.InfoStage.BACKBUTTON_TEXTURE;
+import static hu.cehessteg.Stage.MenuStage.BACKGROUND_TEXTURE;
 import static hu.cehessteg.TetrisGame.muted;
 import static hu.cehessteg.TetrisGame.preferences;
 
@@ -42,6 +43,7 @@ public class OptionsStage extends PrettyStage {
     private Logo optionsLogo;
 
     private OneSpriteStaticActor backButton;
+    private OneSpriteStaticActor bg;
     private OptionSwitch muteButton;
     private Slider difficultySlider;
     private Slider sizeSlider;
@@ -56,6 +58,7 @@ public class OptionsStage extends PrettyStage {
 
     @Override
     public void assignment() {
+        bg = new OneSpriteStaticActor(game, BACKGROUND_TEXTURE);
         SoundManager.assign();
         if(!muted && SoundManager.menuMusic != null)
             SoundManager.menuMusic.play();
@@ -105,6 +108,7 @@ public class OptionsStage extends PrettyStage {
         backButton.setSize(180,180);
         sizeSlider.setWidth(300);
         difficultySlider.setWidth(200);
+        bg.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     @Override
@@ -141,6 +145,7 @@ public class OptionsStage extends PrettyStage {
 
     @Override
     public void addActors() {
+        addActor(bg);
         addActor(optionsLogo);
         addActor(difficultyText);
         addActor(difficultySlider);

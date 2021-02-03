@@ -31,10 +31,11 @@ import static hu.cehessteg.TetrisGame.muted;
 //TODO ESETLEG VALAMI ANIMÁCIÓ A HÁTTÉRBE (KÁRTYÁK UGRÁLNAK, STB)
 
 public class MenuStage extends PrettySimpleStage {
-    public static final String STARTBUTTON_TEXTURE = "play.png";
-    public static final String OPTIONSBUTTON_TEXTURE = "options.png";
-    public static final String INFOBUTTON_TEXTURE = "info.png";
-    public static final String EXITBUTTON_TEXTURE = "close.png";
+    public static final String STARTBUTTON_TEXTURE = "buttons/play.png";
+    public static final String OPTIONSBUTTON_TEXTURE = "buttons/options.png";
+    public static final String INFOBUTTON_TEXTURE = "buttons/info.png";
+    public static final String EXITBUTTON_TEXTURE = "buttons/close.png";
+    public static final String BACKGROUND_TEXTURE = "pic/hatter.png";
 
     public static AssetList assetList = new AssetList();
     static {
@@ -51,12 +52,14 @@ public class MenuStage extends PrettySimpleStage {
     private OneSpriteStaticActor info;
     private OneSpriteStaticActor options;
     private OneSpriteStaticActor exit;
+    private OneSpriteStaticActor bg;
 
     private ArrayList<OneSpriteStaticActor> menuElements;
 
     @Override
     public void assignment() {
         SoundManager.assign();
+        bg = new OneSpriteStaticActor(game,BACKGROUND_TEXTURE);
         if(!muted && SoundManager.menuMusic != null)
             SoundManager.menuMusic.play();
         menuElements = new ArrayList<>();
@@ -87,6 +90,7 @@ public class MenuStage extends PrettySimpleStage {
 
         logo.setSize(logo.getWidth()*0.015f,logo.getHeight()*0.015f);
         logo.setOrigintoCenter();
+        bg.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     @Override
@@ -190,6 +194,7 @@ public class MenuStage extends PrettySimpleStage {
 
     @Override
     public void addActors() {
+        addActor(bg);
         addActor(logo);
         addActor(start);
         addActor(info);

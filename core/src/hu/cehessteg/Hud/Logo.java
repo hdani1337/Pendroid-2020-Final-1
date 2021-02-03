@@ -8,13 +8,11 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.OneSpriteStaticActor;
 
 public class Logo extends OneSpriteStaticActor {
     //region AssetList
-    public static final String LOGO_TEXTURE = "cim.png";
+    public static final String LOGO_TEXTURE = "pic/logos/cim.png";
 
     public static AssetList assetList = new AssetList();
     static {
         assetList.addTexture(LOGO_TEXTURE);
-        assetList.addTexture("balls/kosarLabda.png");
-        assetList.addTexture("balls/ropLabda.png");
     }
     //endregion
     //region Logo típus Enum
@@ -37,15 +35,15 @@ public class Logo extends OneSpriteStaticActor {
                 break;
             }
             case OPTIONS:{
-                sprite.setTexture(game.getMyAssetManager().getTexture("balls/kosarLabda.png"));
+                /*sprite.setTexture(game.getMyAssetManager().getTexture("balls/kosarLabda.png"));
                 setSize(game.getMyAssetManager().getTexture("balls/kosarLabda.png").getWidth()*0.4f,game.getMyAssetManager().getTexture("balls/kosarLabda.png").getHeight()*0.4f);
-                speed = 24;
+                speed = 24;*/
                 break;
             }
             case INFO:{
-                sprite.setTexture(game.getMyAssetManager().getTexture("balls/ropLabda.png"));
+                /*sprite.setTexture(game.getMyAssetManager().getTexture("balls/ropLabda.png"));
                 setSize(game.getMyAssetManager().getTexture("balls/ropLabda.png").getWidth()*0.4f,game.getMyAssetManager().getTexture("balls/ropLabda.png").getHeight()*0.4f);
-                speed = 24;
+                speed = 24;*/
                 break;
             }
             default:{

@@ -19,10 +19,11 @@ import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
 import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
+import static hu.cehessteg.Stage.MenuStage.BACKGROUND_TEXTURE;
 import static hu.cehessteg.TetrisGame.muted;
 
 public class InfoStage extends PrettyStage {
-    public static String BACKBUTTON_TEXTURE = "back2.png";
+    public static String BACKBUTTON_TEXTURE = "buttons/back2.png";
 
     public static AssetList assetList = new AssetList();
     static {
@@ -37,7 +38,7 @@ public class InfoStage extends PrettyStage {
     private OneSpriteStaticActor textBg;
     private MyLabel text;
     private OneSpriteStaticActor back;
-    //private OneSpriteStaticActor playfieldActor;
+    private OneSpriteStaticActor bg;
     private Logo infoLogo;
 
     private boolean setBack;
@@ -45,6 +46,7 @@ public class InfoStage extends PrettyStage {
     //region Absztrakt metódusok
     @Override
     public void assignment() {
+        bg = new OneSpriteStaticActor(game, BACKGROUND_TEXTURE);
         SoundManager.assign();
         if(!muted)
             SoundManager.menuMusic.play();
@@ -81,6 +83,7 @@ public class InfoStage extends PrettyStage {
         infoLogo.setSize(infoLogo.getWidth()*0.9f,infoLogo.getHeight()*0.9f);
         textBg.setSize(text.getWidth()+120,text.getHeight()+140);
         back.setSize(180,180);
+        bg.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     @Override
@@ -110,10 +113,10 @@ public class InfoStage extends PrettyStage {
 
     @Override
     public void addActors() {
+        addActor(bg);
         addActor(infoLogo);
         addActor(textBg);
         addActor(text);
-        //addActor(playfieldActor);
         addActor(back);
     }
     //endregion

@@ -13,6 +13,7 @@ import hu.csanyzeg.master.MyBaseClasses.Scene2D.ResponseViewport;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
 import static hu.cehessteg.Hud.TextBox.RETRO_FONT;
+import static hu.cehessteg.Stage.MenuStage.BACKGROUND_TEXTURE;
 
 
 public class IntroStage extends PrettyStage {
@@ -34,6 +35,7 @@ public class IntroStage extends PrettyStage {
     private OneSpriteStaticActor csanyLogo;
     private OneSpriteStaticActor csapatLogo;
     private OneSpriteStaticActor pendroidLogo;
+    private OneSpriteStaticActor bg;
     private MyLabel copyright;
     //endregion
     //region Konstruktor
@@ -44,6 +46,7 @@ public class IntroStage extends PrettyStage {
     //region Absztrakt metódusok
     @Override
     public void assignment() {
+        bg = new OneSpriteStaticActor(game, BACKGROUND_TEXTURE);
         gdxLogo = new OneSpriteStaticActor(game, GDX_TEXTURE);
         csanyLogo = new OneSpriteStaticActor(game, CSANY_TEXTURE);
         csapatLogo = new OneSpriteStaticActor(game, CSAPAT_TEXTURE);
@@ -60,7 +63,7 @@ public class IntroStage extends PrettyStage {
 
     @Override
     public void setSizes() {
-
+        bg.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
     }
 
     @Override
@@ -84,6 +87,7 @@ public class IntroStage extends PrettyStage {
 
     @Override
     public void addActors() {
+        addActor(bg);
         addActor(gdxLogo);
         addActor(csanyLogo);
         addActor(copyright);
@@ -128,6 +132,8 @@ public class IntroStage extends PrettyStage {
     @Override
     public void act(float delta) {
         super.act(delta);
+        if((1/6.0f) * elapsedTime < 1) bg.setAlpha((1/6.0f) * elapsedTime);
+        else bg.setAlpha(1);
         switch (index) {
             case 0: {
                 pElapsed += delta;
