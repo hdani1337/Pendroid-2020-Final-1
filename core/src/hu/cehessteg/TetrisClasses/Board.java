@@ -4,6 +4,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.util.Random;
 
+import hu.cehessteg.Stage.GameStage;
 import hu.cehessteg.Stage.HudStage;
 import hu.cehessteg.Stage.OptionsStage;
 
@@ -23,11 +24,13 @@ public class Board {
     public Tetromino curPiece;//Jelenlegi tetromino alakja
     public static ShapeType nextPiece;//Következő tetromino alakja
     public ShapeType[] board;//Játéktábla
+    private GameStage gameStage;
 
     /**Üres konstruktor a példányosítás miatt**/
-    public Board() {
+    public Board(GameStage gameStage) {
         isPaused = false;
         isGameOver = false;
+        this.gameStage = gameStage;
     }
 
     /**Visszaadja az adott koordinátán levő kocka tetrominojának alakját**/
@@ -81,6 +84,7 @@ public class Board {
             int y = curY - curPiece.y(i);
             board[(y * BOARD_WIDTH) + x] = curPiece.getShape();
         }
+        gameStage.playSound(1);
 
         removeFullLines();
 
@@ -138,6 +142,7 @@ public class Board {
                         board[(k * BOARD_WIDTH) + j] = shapeAt(j, k + 1);
                     }
                 }
+                gameStage.playSound(0);
             }
         }
 

@@ -35,15 +35,15 @@ public class Logo extends OneSpriteStaticActor {
                 break;
             }
             case OPTIONS:{
-                /*sprite.setTexture(game.getMyAssetManager().getTexture("balls/kosarLabda.png"));
-                setSize(game.getMyAssetManager().getTexture("balls/kosarLabda.png").getWidth()*0.4f,game.getMyAssetManager().getTexture("balls/kosarLabda.png").getHeight()*0.4f);
-                speed = 24;*/
+                sprite.setTexture(game.getMyAssetManager().getTexture("buttons/options.png"));
+                setSize(game.getMyAssetManager().getTexture("buttons/options.png").getWidth()*1,game.getMyAssetManager().getTexture("buttons/options.png").getHeight()*1);
+                speed = 10;
                 break;
             }
             case INFO:{
-                /*sprite.setTexture(game.getMyAssetManager().getTexture("balls/ropLabda.png"));
-                setSize(game.getMyAssetManager().getTexture("balls/ropLabda.png").getWidth()*0.4f,game.getMyAssetManager().getTexture("balls/ropLabda.png").getHeight()*0.4f);
-                speed = 24;*/
+                sprite.setTexture(game.getMyAssetManager().getTexture("buttons/info.png"));
+                setSize(game.getMyAssetManager().getTexture("buttons/info.png").getWidth()*1,game.getMyAssetManager().getTexture("buttons/info.png").getHeight()*1);
+                speed = 10;
                 break;
             }
             default:{
@@ -59,11 +59,8 @@ public class Logo extends OneSpriteStaticActor {
     public void act(float delta) {
         super.act(delta);
         setRotation(getRotation() + delta * speed);
-
-        if(sprite.getTexture() == game.getMyAssetManager().getTexture(LOGO_TEXTURE))
-            if (getRotation() >= 12 || getRotation() <= -12) {
-                speed *= -1;
-            }
+        if (getRotation() >= 12 || getRotation() <= -12)
+            speed *= -1;
     }
     //endregion
 }

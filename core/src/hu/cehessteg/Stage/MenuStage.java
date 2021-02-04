@@ -58,10 +58,10 @@ public class MenuStage extends PrettySimpleStage {
 
     @Override
     public void assignment() {
-        SoundManager.assign();
+        //SoundManager.assign();
         bg = new OneSpriteStaticActor(game,BACKGROUND_TEXTURE);
-        if(!muted && SoundManager.menuMusic != null)
-            SoundManager.menuMusic.play();
+        /*if(!muted && SoundManager.menuMusic != null)
+            SoundManager.menuMusic.play();*/
         menuElements = new ArrayList<>();
         logo = new Logo(game, Logo.LogoType.MENU);
         start = new OneSpriteStaticActor(game, STARTBUTTON_TEXTURE);
@@ -91,6 +91,7 @@ public class MenuStage extends PrettySimpleStage {
         logo.setSize(logo.getWidth()*0.015f,logo.getHeight()*0.015f);
         logo.setOrigintoCenter();
         bg.setSize(getViewport().getWorldWidth(),getViewport().getWorldHeight());
+        exit.setSize(exit.getWidth()*0.7f,exit.getHeight()*0.7f);
     }
 
     @Override

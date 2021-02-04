@@ -165,7 +165,7 @@ public class PauseStage extends PrettyStage {
         //Adjuk hozzá a gombokat a stagehez ha még nincsenek rajta
         if(!addedActors) {
             addActors();
-            if(music != null) music.pause();
+            if(music != null && !muted) music.pause();
         }
 
         //Áttűnés
@@ -184,7 +184,7 @@ public class PauseStage extends PrettyStage {
 
     @Deprecated
     private void resume(Music music){
-        if(music != null) music.play();
+        if(music != null && !muted) music.play();
         //Áttűnéssel tűnnek el a stageről
         if(alpha > 0.05f) {
             //if(!music.isPlaying()) music.play();

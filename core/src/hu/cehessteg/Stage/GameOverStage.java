@@ -6,6 +6,7 @@ import com.badlogic.gdx.utils.Align;
 
 import hu.cehessteg.Hud.TextBox;
 import hu.cehessteg.Screen.GameScreen;
+import hu.cehessteg.SoundManager;
 import hu.cehessteg.TetrisClasses.Board;
 import hu.csanyzeg.master.MyBaseClasses.Assets.AssetList;
 import hu.csanyzeg.master.MyBaseClasses.Game.MyGame;
@@ -171,8 +172,10 @@ public class GameOverStage extends PrettyStage {
         pontok.textLabel.setX(56);
 
         //Adjuk hozzá a gombokat a stagehez ha még nincsenek rajta
-        if(!addedActors)
+        if(!addedActors) {
             addActors();
+            if(SoundManager.loseSound != null && !muted) SoundManager.loseSound.play();
+        }
 
         //Áttűnés
         if(alpha < 0.99f)

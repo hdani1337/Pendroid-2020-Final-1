@@ -17,7 +17,10 @@ public class SoundManager {
     /**
      * Hangok elérési útjai
      * **/
-
+    public static final String FALLSOUND = "sound/fall.mp3";
+    public static final String CLEARSOUND = "sound/clear.mp3";
+    public static final String STEPSOUND = "sound/step.mp3";
+    public static final String LOSESOUND = "sound/lose.mp3";
 
     /**
      * Zenék elérési útjai
@@ -28,6 +31,10 @@ public class SoundManager {
     /**
      * Hangok
      * **/
+    public static Sound fallSound;
+    public static Sound clearSound;
+    public static Sound stepSound;
+    public static Sound loseSound;
 
     /**
      * Zenék
@@ -43,6 +50,10 @@ public class SoundManager {
             /**
              * Hang objektumok létrehozása
              * **/
+            fallSound = game.getMyAssetManager().getSound(FALLSOUND);
+            clearSound = game.getMyAssetManager().getSound(CLEARSOUND);
+            stepSound = game.getMyAssetManager().getSound(STEPSOUND);
+            loseSound = game.getMyAssetManager().getSound(LOSESOUND);
 
             /**
              * Zene objektumok létrehozása
@@ -60,6 +71,10 @@ public class SoundManager {
             /**
              * Hangok betöltése
              * **/
+            assetList.addSound(FALLSOUND);
+            assetList.addSound(CLEARSOUND);
+            assetList.addSound(STEPSOUND);
+            assetList.addSound(LOSESOUND);
 
             /**
              * Zenék betöltése
@@ -78,6 +93,10 @@ public class SoundManager {
         /**
          * Hang objektumok nullásáza
          * **/
+        clearSound = null;
+        fallSound = null;
+        stepSound = null;
+        loseSound = null;
 
         /**
          * Zene objektumok nullázása

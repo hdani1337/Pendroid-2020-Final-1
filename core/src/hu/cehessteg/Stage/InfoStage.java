@@ -47,24 +47,19 @@ public class InfoStage extends PrettyStage {
     @Override
     public void assignment() {
         bg = new OneSpriteStaticActor(game, BACKGROUND_TEXTURE);
-        SoundManager.assign();
+        /*SoundManager.assign();
         if(!muted)
-            SoundManager.menuMusic.play();
+            SoundManager.menuMusic.play();*/
         back = new OneSpriteStaticActor(game, BACKBUTTON_TEXTURE);
         textBg = new OneSpriteStaticActor(game,TEXTBOX_TEXTURE);
         infoLogo = new Logo(game, Logo.LogoType.INFO);
 
         String infoText = "Ez az alkalmazás a Pendroid versenyre készült.\n" +
-                "Ennek az egyszerű játéknak a célja csupán annyi,\n" +
-                "hogy minél tovább pattogtasd a labdát.\n" +
-                "Minden egyes labdához érés után egy pontot\n" +
-                "kap a játékos. Ha a labda földet ér\n" +
-                "vagy kimegy a képből, akkor véget ér a játék.\n" +
-                "Továbbá az Opciók menüpontban kedvünkre\n" +
-                "választhatunk a rendelkezésre álló labdákból,\n" +
-                "illetve hány labdával szeretnénk játszani egyszerre\n" +
-                "amik mentésre is kerülnek, így a kilépés után is\n" +
-                "megmaradnak a kiválasztott állapotok.\n\n" +
+                "Egy régi klasszikust dolgoztunk fel, a cím alapján\n" +
+                "nem kell részletesen bemutatni a játékot.\n" +
+                "Az irányítás húzással történik, balra, jobbra, vagy lefelé,\n" +
+                "koppintással pedig forgathatjuk a jelenlegi testet.\n" +
+                "A pálya mérete és nehézsége igény szerint állítható.\n\n" +
                 "Jó játékot kíván a Céhessteg csapata!";
 
         text = new MyLabel(game, infoText, new Label.LabelStyle(game.getMyAssetManager().getFont(VERDANA_FONT), Color.WHITE)) {
@@ -89,9 +84,9 @@ public class InfoStage extends PrettyStage {
     @Override
     public void setPositions() {
         back.setPosition(getViewport().getWorldWidth() - back.getWidth()-16,16);
-        infoLogo.setPosition(getViewport().getWorldWidth()/2 - infoLogo.getWidth()/2,getViewport().getWorldHeight() - infoLogo.getHeight()*1.1f);
+        infoLogo.setPosition(getViewport().getWorldWidth()/2 - infoLogo.getWidth()/2,getViewport().getWorldHeight() - infoLogo.getHeight()*1.25f);
         text.setAlignment(Align.center);
-        //text.setPosition(getViewport().getWorldWidth()/2-text.getWidth()/2,playfieldActor.getHeight()*0.75f);
+        text.setPosition(getViewport().getWorldWidth()/2-text.getWidth()/2,getViewport().getWorldHeight()/2-text.getHeight()/2);
         textBg.setPosition(text.getX()-60,text.getY()-70);
     }
 

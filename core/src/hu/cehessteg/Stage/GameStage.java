@@ -45,9 +45,10 @@ public class GameStage extends PrettySimpleStage {
         SoundManager.assign();
         if(!muted && SoundManager.gameMusic != null) {
             SoundManager.gameMusic.play();
+            SoundManager.gameMusic.setVolume(0.75f);
             SoundManager.gameMusic.setLooping(true);
         }
-        board = new Board();
+        board = new Board(this);
         board.BOARD_WIDTH = size;
         board.BOARD_HEIGHT = (int) getViewport().getWorldHeight();
         board.start();
@@ -140,8 +141,8 @@ public class GameStage extends PrettySimpleStage {
                     board.update();
                     for (BlockActor b : blockActors) b.update();
                     updateCurrentTetromino();
+                    if(SoundManager.stepSound != null && !muted) SoundManager.stepSound.play(0.4f);
                     point = board.numLinesRemoved*25*difficulty;
-                    System.out.println(board.nextPiece.name());
                 }
             }
         }));
@@ -167,5 +168,17 @@ public class GameStage extends PrettySimpleStage {
                 controllable = true;
             }
         }));
+    }
+
+    public void playSound(int id){
+        if(!muted){
+            if(id == 0 && SoundManager.clearSound != null){
+                //CLEAR
+                SoundManager.clearSound.play();
+            }else if(id == 1 && SoundManager.fallSound != null){
+                //FALL
+                SoundManager.fallSound.play();
+            }
+        }
     }
 }

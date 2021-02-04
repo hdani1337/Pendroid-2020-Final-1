@@ -59,9 +59,9 @@ public class OptionsStage extends PrettyStage {
     @Override
     public void assignment() {
         bg = new OneSpriteStaticActor(game, BACKGROUND_TEXTURE);
-        SoundManager.assign();
+        /*SoundManager.assign();
         if(!muted && SoundManager.menuMusic != null)
-            SoundManager.menuMusic.play();
+            SoundManager.menuMusic.play();*/
         setBack = false;
         if(difficulty == 0) difficulty = 1;
         if(size == 0) size = 10;
@@ -114,7 +114,7 @@ public class OptionsStage extends PrettyStage {
     @Override
     public void setPositions() {
         backButton.setPosition(16,16);
-        optionsLogo.setPosition(getViewport().getWorldWidth()/2 - optionsLogo.getWidth()/2, getViewport().getWorldHeight() - optionsLogo.getHeight()*1.15f);
+        optionsLogo.setPosition(getViewport().getWorldWidth()/2 - optionsLogo.getWidth()/2, getViewport().getWorldHeight() - optionsLogo.getHeight()*1.25f);
         difficultySlider.setPosition(getViewport().getWorldWidth()/2-difficultySlider.getWidth()/2,getViewport().getWorldHeight()*0.425f);
         difficultyText.setPosition(difficultySlider.getX() + difficultySlider.getWidth()/2-difficultyText.getWidth()/2,difficultySlider.getY()-20);
         muteButton.setPosition(getViewport().getWorldWidth()/2-muteButton.getWidth()/2,getViewport().getWorldHeight()*0.625f);
