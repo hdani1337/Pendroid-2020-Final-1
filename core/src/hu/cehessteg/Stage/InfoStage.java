@@ -17,6 +17,7 @@ import hu.csanyzeg.master.MyBaseClasses.Timers.TickTimerListener;
 import hu.csanyzeg.master.MyBaseClasses.Timers.Timer;
 import hu.csanyzeg.master.MyBaseClasses.UI.MyLabel;
 
+import static hu.cehessteg.Hud.TextBox.RETRO_FONT;
 import static hu.cehessteg.Hud.TextBox.TEXTBOX_TEXTURE;
 import static hu.cehessteg.Hud.TextBox.VERDANA_FONT;
 import static hu.cehessteg.Stage.MenuStage.BACKGROUND_TEXTURE;
@@ -28,7 +29,7 @@ public class InfoStage extends PrettyStage {
     public static AssetList assetList = new AssetList();
     static {
         assetList.addTexture(BACKBUTTON_TEXTURE);
-        assetList.addFont(VERDANA_FONT, VERDANA_FONT, 32, Color.WHITE, AssetList.CHARS);
+        assetList.addFont(RETRO_FONT, RETRO_FONT, 32, Color.WHITE, AssetList.CHARS);
     }
 
     public InfoStage(MyGame game) {
@@ -57,12 +58,13 @@ public class InfoStage extends PrettyStage {
         String infoText = "Ez az alkalmazás a Pendroid versenyre készült.\n" +
                 "Egy régi klasszikust dolgoztunk fel, a cím alapján\n" +
                 "nem kell részletesen bemutatni a játékot.\n" +
-                "Az irányítás húzással történik, balra, jobbra, vagy lefelé,\n" +
-                "koppintással pedig forgathatjuk a jelenlegi testet.\n" +
-                "A pálya mérete és nehézsége igény szerint állítható.\n\n" +
+                "Az irányítás húzással történik,\n" +
+                "balra, jobbra, vagy lefelé,\n" +
+                "koppintással pedig forgathatjuk a testet.\n" +
+                "A pálya mérete és nehézsége állítható.\n\n" +
                 "Jó játékot kíván a Céhessteg csapata!";
 
-        text = new MyLabel(game, infoText, new Label.LabelStyle(game.getMyAssetManager().getFont(VERDANA_FONT), Color.WHITE)) {
+        text = new MyLabel(game, infoText, new Label.LabelStyle(game.getMyAssetManager().getFont(RETRO_FONT), Color.WHITE)) {
             @Override
             public void init() {
 

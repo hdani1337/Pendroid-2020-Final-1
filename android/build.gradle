@@ -17,7 +17,7 @@ android {
         exclude 'META-INF/robovm/ios/robovm.xml'
     }
     defaultConfig {
-        applicationId "hu.cehessteg.ballgame"
+        applicationId "hu.cehessteg.tetrisgame"
         minSdkVersion 14
         targetSdkVersion 29
         versionCode 1

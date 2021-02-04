@@ -141,7 +141,7 @@ public class GameStage extends PrettySimpleStage {
                     board.update();
                     for (BlockActor b : blockActors) b.update();
                     updateCurrentTetromino();
-                    if(SoundManager.stepSound != null && !muted) SoundManager.stepSound.play(0.4f);
+                    if(SoundManager.stepSound != null && !muted && !Board.isPaused && !Board.isGameOver) SoundManager.stepSound.play(0.4f);
                     point = board.numLinesRemoved*25*difficulty;
                 }
             }
